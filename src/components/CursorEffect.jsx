@@ -4,8 +4,6 @@ const COLORS = ['#38bdf8', '#818cf8', '#f472b6', '#fb923c', '#a3e635', '#facc15'
 
 const CursorEffect = () => {
   const canvasRef = useRef(null);
-  const particles = useRef([]);
-  const animId = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
