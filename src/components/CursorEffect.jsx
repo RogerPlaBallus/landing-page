@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const CursorEffect = () => {
   const canvasRef = useRef(null);
@@ -7,110 +7,177 @@ const CursorEffect = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-
     let animationFrameId;
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-    canvas.width = w;
-    canvas.height = h;
 
-    // Initial mouse off-screen or center
-    const mouse = { x: w / 2, y: h / 2 };
-    
-    // ─── Premium Configuration ──────────────────────────────────────────
-    const config = {
-      points: 50,             // Length of the tail (number of segments)
-      spring: 0.45,           // How snappy it follows (0 - 1)
-      friction: 0.45,         // How much speed is retained (0 - 1)
-      baseRadius: 10,         // Head radius (thickness of the start of the tail)
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
-    // Initialize points array
-    const points = Array.from({ length: config.points }, () => ({
-      x: mouse.x,
-      y: mouse.y,
-      vx: 0,
-      vy: 0,
-    }));
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    const handleResize = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w;
-      canvas.height = h;
-    };
+    const mouse = { x: null, y: null };
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
 
-    window.addEventListener('resize', handleResize);
+    const handleMouseLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseout', handleMouseLeave);
 
-    const update = () => {
-      ctx.clearRect(0, 0, w, h);
+    const particlesArray = [];
+    const numberOfParticles = 150; 
 
-      let targetX = mouse.x;
-      let targetY = mouse.y;
-
-      // 1. Calculate physics for each point
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-
-        const dx = targetX - p.x;
-        const dy = targetY - p.y;
-
-        p.vx += dx * config.spring;
-        p.vy += dy * config.spring;
-
-        p.vx *= config.friction;
-        p.vy *= config.friction;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Current point becomes the target for the next point in the chain
-        targetX = p.x;
-        targetY = p.y;
+    class Particle {
+      constructor() {
+        this.reset(true);
       }
 
-      // 2. Draw the beautiful continuous glowing tail
-      // "screen" blend mode gives overlapping colors a bright, premium glow
-      ctx.globalCompositeOperation = 'screen';
+      reset(initial = false) {
+        if (initial || Math.random() < 0.2) {
+            this.x = Math.random() * canvas.width;
+            this.physicsY = Math.random() * canvas.height;
+        } else {
+             const edge = Math.floor(Math.random() * 4);
+             if (edge === 0) { this.x = Math.random() * canvas.width; this.physicsY = -10; } // Top
+             else if (edge === 1) { this.x = canvas.width + 10; this.physicsY = Math.random() * canvas.height; } // Right
+             else if (edge === 2) { this.x = Math.random() * canvas.width; this.physicsY = canvas.height + 10; } // Bottom
+             else { this.x = -10; this.y = Math.random() * canvas.height; } // Left
+        }
 
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
+        this.y = this.physicsY;
+
+        this.baseSize = Math.random() * 2 + 0.5;
+        this.baseVx = (Math.random() - 0.5) * 0.8; // Doubled base speed
+        this.baseVy = (Math.random() - 0.5) * 0.8;
+        this.vx = this.baseVx;
+        this.vy = this.baseVy;
         
-        // t goes from 0 (head) to 1 (tail end)
-        const t = i / (points.length - 1); 
-        
-        // Tapering radius: big at head, small at tail
-        const radius = config.baseRadius * (1 - t);
-        
+        // Wave properties
+        this.waveAmplitude = Math.random() * 15 + 5; // How far up/down they move
+        this.wavePhase = Math.random() * Math.PI * 2; // Random starting point in the wave cycle
+        this.waveOffset = 0;
+
+        this.alpha = 0; // Start invisible
+      }
+
+      draw() {
+        if (this.alpha <= 0.05) return; 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(radius, 0.1), 0, Math.PI * 2);
         
-        // Google-inspired color spectrum (Blues -> Purples -> Pinks -> Oranges)
-        // 210 hue is Blue, going up to ~350 which is Pink/Red
-        const hue = 210 + t * 140; 
-        const alpha = 1 - t; // Fade out towards the tail end
-        
-        ctx.fillStyle = `hsla(${hue}, 90%, 65%, ${alpha})`;
+        // Calculate dynamic size based on current vertical wave position
+        // When this.waveOffset is positive (down), size increases. When negative (up), size decreases.
+        // Cap the size multiplier between 0.5x and 1.8x
+        const sizeMultiplier = 1 + (this.waveOffset / this.waveAmplitude) * 0.8; 
+        const renderSize = Math.max(0.1, this.baseSize * sizeMultiplier);
+
+        ctx.arc(this.x, this.y, renderSize, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
         ctx.fill();
       }
 
-      // Reset composite operation
-      ctx.globalCompositeOperation = 'source-over';
+      update(time) {
+        // High friction to simulate water resistance horizontally
+        this.vx *= 0.90;
+        this.vy *= 0.90;
 
-      animationFrameId = requestAnimationFrame(update);
+        // "Medusa Waves" - Particles move up and down in a rhythmic wave (faster)
+        const wobbleSpeed = time / 800;
+        
+        // Horizontal drift now slightly faster
+        const fluidX = Math.sin(wobbleSpeed + this.baseVx * 10) * 0.4;
+        this.vx += fluidX;
+
+        // Calculate vertical wave offset
+        // BaseVy acts as a distinct phase shift so they don't all move in unison
+        this.waveOffset = Math.sin(wobbleSpeed * 2 + this.wavePhase) * this.waveAmplitude;
+        
+        // The actual Y position is the physical physics Y + the visual wave offset
+        this.y = this.physicsY + this.waveOffset;
+
+        const influenceRadius = 400; // How far the light/pull reaches
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          // Calculate true distance from the visual position to the mouse
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < influenceRadius) {
+            // Fade in as they get closer to the cursor
+            const targetAlpha = Math.pow((influenceRadius - distance) / influenceRadius, 1.5) * 0.9;
+            this.alpha += (targetAlpha - this.alpha) * 0.1;
+
+            const dirX = dx / distance;
+            const dirY = dy / distance;
+            
+            // Very gentle attraction
+            let pullStrength = (influenceRadius - distance) / influenceRadius * 0.25;
+
+            // Core repulsion
+            const coreRadius = 120;
+            if (distance < coreRadius) {
+                pullStrength -= Math.pow((coreRadius - distance) / coreRadius, 2) * 1.5;
+            }
+
+            const breathe = 1 + Math.sin(time / 800) * 0.3;
+            
+            this.vx += dirX * pullStrength * breathe;
+            // Apply physics force to the physics baseline Y, not the visual wave Y
+            this.vy += dirY * pullStrength * breathe;
+          } else {
+            // Fade out when outside radius
+            this.alpha += (0 - this.alpha) * 0.1;
+          }
+        } else {
+             // Fade out when cursor leaves screen
+             this.alpha += (0 - this.alpha) * 0.1;
+        }
+
+        this.x += this.vx;
+        this.physicsY += this.vy;
+
+        // Screen wrapping for ambient particles (checking baseline physics Y)
+        if (this.x < -20) this.x = canvas.width + 20;
+        if (this.x > canvas.width + 20) this.x = -20;
+        if (this.physicsY < -40) this.physicsY = canvas.height + 40;
+        if (this.physicsY > canvas.height + 40) this.physicsY = -40;
+      }
+    }
+
+    const init = () => {
+      particlesArray.length = 0;
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
     };
 
-    update();
+    const animate = (time = performance.now()) => {
+      // Ensure normal drawing mode
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update(time); // Pass timestamp for breathing effect
+        particlesArray[i].draw();
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    init();
+    animate();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseout', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -118,13 +185,7 @@ const CursorEffect = () => {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        pointerEvents: 'none',
-        zIndex: 9999, // ensures it sits on top of everything
-      }}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-9999"
     />
   );
 };
