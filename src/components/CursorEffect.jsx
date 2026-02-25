@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-const COLORS = ['#38bdf8', '#818cf8', '#f472b6', '#fb923c', '#a3e635', '#facc15', '#f87171'];
-
 const CursorEffect = () => {
   const canvasRef = useRef(null);
 
@@ -9,66 +7,111 @@ const CursorEffect = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+
+    let animationFrameId;
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    // Initial mouse off-screen or center
+    const mouse = { x: w / 2, y: h / 2 };
+    
+    // ─── Premium Configuration ──────────────────────────────────────────
+    const config = {
+      points: 50,             // Length of the tail (number of segments)
+      spring: 0.45,           // How snappy it follows (0 - 1)
+      friction: 0.45,         // How much speed is retained (0 - 1)
+      baseRadius: 10,         // Head radius (thickness of the start of the tail)
+    };
+
+    // Initialize points array
+    const points = Array.from({ length: config.points }, () => ({
+      x: mouse.x,
+      y: mouse.y,
+      vx: 0,
+      vy: 0,
+    }));
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
 
     const handleMouseMove = (e) => {
-      for (let i = 0; i < 3; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 2.5 + 1;
-        particles.current.push({
-          x: e.clientX,
-          y: e.clientY,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          life: 1,
-          decay: Math.random() * 0.02 + 0.012,
-          color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          w: Math.random() * 3 + 2,
-          h: Math.random() * 8 + 5,
-          rotation: angle,
-        });
-      }
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     };
+
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
 
-    const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const update = () => {
+      ctx.clearRect(0, 0, w, h);
 
-      for (const p of particles.current) {
+      let targetX = mouse.x;
+      let targetY = mouse.y;
+
+      // 1. Calculate physics for each point
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+
+        const dx = targetX - p.x;
+        const dy = targetY - p.y;
+
+        p.vx += dx * config.spring;
+        p.vy += dy * config.spring;
+
+        p.vx *= config.friction;
+        p.vy *= config.friction;
+
         p.x += p.vx;
         p.y += p.vy;
-        p.vx *= 0.98;
-        p.vy *= 0.98;
-        p.life -= p.decay;
 
-        if (p.life <= 0) continue;
-
-        ctx.save();
-        ctx.globalAlpha = p.life;
-        ctx.fillStyle = p.color;
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation);
-        ctx.fillRect(-p.h / 2, -p.w / 2, p.h, p.w);
-        ctx.restore();
+        // Current point becomes the target for the next point in the chain
+        targetX = p.x;
+        targetY = p.y;
       }
 
-      particles.current = particles.current.filter((p) => p.life > 0);
-      animId.current = requestAnimationFrame(render);
+      // 2. Draw the beautiful continuous glowing tail
+      // "screen" blend mode gives overlapping colors a bright, premium glow
+      ctx.globalCompositeOperation = 'screen';
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        
+        // t goes from 0 (head) to 1 (tail end)
+        const t = i / (points.length - 1); 
+        
+        // Tapering radius: big at head, small at tail
+        const radius = config.baseRadius * (1 - t);
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(radius, 0.1), 0, Math.PI * 2);
+        
+        // Google-inspired color spectrum (Blues -> Purples -> Pinks -> Oranges)
+        // 210 hue is Blue, going up to ~350 which is Pink/Red
+        const hue = 210 + t * 140; 
+        const alpha = 1 - t; // Fade out towards the tail end
+        
+        ctx.fillStyle = `hsla(${hue}, 90%, 65%, ${alpha})`;
+        ctx.fill();
+      }
+
+      // Reset composite operation
+      ctx.globalCompositeOperation = 'source-over';
+
+      animationFrameId = requestAnimationFrame(update);
     };
 
-    animId.current = requestAnimationFrame(render);
+    update();
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animId.current);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
@@ -79,10 +122,8 @@ const CursorEffect = () => {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
         pointerEvents: 'none',
-        zIndex: 9999,
+        zIndex: 9999, // ensures it sits on top of everything
       }}
     />
   );
