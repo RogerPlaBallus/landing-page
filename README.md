@@ -1,7 +1,7 @@
 # Landing Page
 
-A minimal, dark‑theme React landing page built with Vite.
-
+A minimal, dark‑theme React landing page built with Vite.<br>
+https://rogerplaballus.github.io/landing-page/ 
 ## Features
 
 - Responsive layout with Navbar, About, Skills, Projects, Contact
