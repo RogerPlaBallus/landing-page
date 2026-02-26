@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CursorEffect from './components/CursorEffect';
 import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 
 function App() {
   return (  /*background color */
@@ -27,7 +28,9 @@ function App() {
         {/* Section: Contact */}
         <Contact />
       </main>
-      {/* 3. Scroll to Top Button */}
+      {/* 4. Footer */}
+      <Footer />
+      {/* 5. Scroll to Top Button */}
       <ScrollToTop />
     </div>
   );
