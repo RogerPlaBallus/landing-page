@@ -33,7 +33,7 @@ const CursorEffect = () => {
     window.addEventListener('mouseout', handleMouseLeave);
 
     const particlesArray = [];
-    const numberOfParticles = 150; 
+    const numberOfParticles = 150;
 
     class Particle {
       constructor() {
@@ -42,113 +42,121 @@ const CursorEffect = () => {
 
       reset(initial = false) {
         if (initial || Math.random() < 0.2) {
-            this.x = Math.random() * canvas.width;
-            this.physicsY = Math.random() * canvas.height;
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
         } else {
-             const edge = Math.floor(Math.random() * 4);
-             if (edge === 0) { this.x = Math.random() * canvas.width; this.physicsY = -10; } // Top
-             else if (edge === 1) { this.x = canvas.width + 10; this.physicsY = Math.random() * canvas.height; } // Right
-             else if (edge === 2) { this.x = Math.random() * canvas.width; this.physicsY = canvas.height + 10; } // Bottom
-             else { this.x = -10; this.y = Math.random() * canvas.height; } // Left
+          const edge = Math.floor(Math.random() * 4);
+          if (edge === 0) { this.x = Math.random() * canvas.width; this.y = -10; }
+          else if (edge === 1) { this.x = canvas.width + 10; this.y = Math.random() * canvas.height; }
+          else if (edge === 2) { this.x = Math.random() * canvas.width; this.y = canvas.height + 10; }
+          else { this.x = -10; this.y = Math.random() * canvas.height; }
         }
 
-        this.y = this.physicsY;
-
         this.baseSize = Math.random() * 2 + 0.5;
-        this.baseVx = (Math.random() - 0.5) * 0.8; // Doubled base speed
-        this.baseVy = (Math.random() - 0.5) * 0.8;
-        this.vx = this.baseVx;
-        this.vy = this.baseVy;
-        
-        // Wave properties
-        this.waveAmplitude = Math.random() * 15 + 5; // How far up/down they move
-        this.wavePhase = Math.random() * Math.PI * 2; // Random starting point in the wave cycle
-        this.waveOffset = 0;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
 
-        this.alpha = 0; // Start invisible
+        // Orbit properties
+        this.angle = Math.random() * Math.PI * 2;
+        this.orbitSpeed = (Math.random() - 0.5) * 0.02;
+        this.orbitRadius = Math.random() * 60 + 40;
+        this.captured = false;
+        this.breathePhase = Math.random() * Math.PI * 2;
+
+        this.alpha = 0;
       }
 
-      draw() {
-        if (this.alpha <= 0.05) return; 
-        ctx.beginPath();
-        
-        // Calculate dynamic size based on current vertical wave position
-        // When this.waveOffset is positive (down), size increases. When negative (up), size decreases.
-        // Cap the size multiplier between 0.5x and 1.8x
-        const sizeMultiplier = 1 + (this.waveOffset / this.waveAmplitude) * 0.8; 
-        const renderSize = Math.max(0.1, this.baseSize * sizeMultiplier);
+      draw(time) {
+        if (this.alpha <= 0.05) return;
 
-        ctx.arc(this.x, this.y, renderSize, 0, Math.PI * 2);
+        let renderSize = this.baseSize;
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          const coreRadius = 30;
+          const orbitZone = 120;
+
+          if (distance < coreRadius) {
+            renderSize = this.baseSize * 0.2;
+          } else if (distance < orbitZone) {
+            const breathe = 1 + Math.sin(time / 600 + this.breathePhase) * 0.5;
+            renderSize = this.baseSize * 1.8 * breathe;
+          } else {
+            renderSize = this.baseSize;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, Math.max(0.1, renderSize), 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
         ctx.fill();
       }
 
       update(time) {
-        // High friction to simulate water resistance horizontally
-        this.vx *= 0.90;
-        this.vy *= 0.90;
-
-        // "Medusa Waves" - Particles move up and down in a rhythmic wave (faster)
-        const wobbleSpeed = time / 800;
-        
-        // Horizontal drift now slightly faster
-        const fluidX = Math.sin(wobbleSpeed + this.baseVx * 10) * 0.4;
-        this.vx += fluidX;
-
-        // Calculate vertical wave offset
-        // BaseVy acts as a distinct phase shift so they don't all move in unison
-        this.waveOffset = Math.sin(wobbleSpeed * 2 + this.wavePhase) * this.waveAmplitude;
-        
-        // The actual Y position is the physical physics Y + the visual wave offset
-        this.y = this.physicsY + this.waveOffset;
-
-        const influenceRadius = 400; // How far the light/pull reaches
+        const influenceRadius = 400;
 
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - this.x;
-          // Calculate true distance from the visual position to the mouse
           const dy = mouse.y - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < influenceRadius) {
-            // Fade in as they get closer to the cursor
             const targetAlpha = Math.pow((influenceRadius - distance) / influenceRadius, 1.5) * 0.9;
             this.alpha += (targetAlpha - this.alpha) * 0.1;
 
-            const dirX = dx / distance;
-            const dirY = dy / distance;
-            
-            // Very gentle attraction
-            let pullStrength = (influenceRadius - distance) / influenceRadius * 0.25;
+            if (this.captured) {
+              // --- ORBIT MODE ---
+              this.angle += this.orbitSpeed;
+              const targetX = mouse.x + Math.cos(this.angle) * this.orbitRadius;
+              const targetY = mouse.y + Math.sin(this.angle) * this.orbitRadius;
 
-            // Core repulsion
-            const coreRadius = 120;
-            if (distance < coreRadius) {
-                pullStrength -= Math.pow((coreRadius - distance) / coreRadius, 2) * 1.5;
+              this.x += (targetX - this.x) * 0.12;
+              this.y += (targetY - this.y) * 0.12;
+
+              this.vx *= 0.9;
+              this.vy *= 0.9;
+
+              if (distance > this.orbitRadius + 80) {
+                this.captured = false;
+              }
+            } else {
+              // --- ATTRACTION MODE ---
+              const attractStrength = 0.08;
+              this.vx += (dx / distance) * attractStrength;
+              this.vy += (dy / distance) * attractStrength;
+
+              if (distance < this.orbitRadius + 20) {
+                this.captured = true;
+                this.angle = Math.atan2(this.y - mouse.y, this.x - mouse.x);
+              }
+
+              this.vx *= 0.97;
+              this.vy *= 0.97;
+
+              this.x += this.vx;
+              this.y += this.vy;
             }
-
-            const breathe = 1 + Math.sin(time / 800) * 0.3;
-            
-            this.vx += dirX * pullStrength * breathe;
-            // Apply physics force to the physics baseline Y, not the visual wave Y
-            this.vy += dirY * pullStrength * breathe;
           } else {
-            // Fade out when outside radius
-            this.alpha += (0 - this.alpha) * 0.1;
+            this.captured = false;
+            this.alpha += (0 - this.alpha) * 0.05;
+            this.x += this.vx;
+            this.y += this.vy;
           }
         } else {
-             // Fade out when cursor leaves screen
-             this.alpha += (0 - this.alpha) * 0.1;
+          this.captured = false;
+          this.alpha += (0 - this.alpha) * 0.05;
+          this.x += this.vx;
+          this.y += this.vy;
         }
 
-        this.x += this.vx;
-        this.physicsY += this.vy;
-
-        // Screen wrapping for ambient particles (checking baseline physics Y)
+        // Screen wrapping
         if (this.x < -20) this.x = canvas.width + 20;
         if (this.x > canvas.width + 20) this.x = -20;
-        if (this.physicsY < -40) this.physicsY = canvas.height + 40;
-        if (this.physicsY > canvas.height + 40) this.physicsY = -40;
+        if (this.y < -40) this.y = canvas.height + 40;
+        if (this.y > canvas.height + 40) this.y = -40;
       }
     }
 
@@ -160,13 +168,12 @@ const CursorEffect = () => {
     };
 
     const animate = (time = performance.now()) => {
-      // Ensure normal drawing mode
       ctx.globalCompositeOperation = 'source-over';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update(time); // Pass timestamp for breathing effect
-        particlesArray[i].draw();
+        particlesArray[i].update(time);
+        particlesArray[i].draw(time);
       }
       animationFrameId = requestAnimationFrame(animate);
     };
