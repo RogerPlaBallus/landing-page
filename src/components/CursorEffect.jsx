@@ -80,7 +80,8 @@ const CursorEffect = () => {
           const orbitZone = 120;
 
           if (distance < coreRadius) {
-            renderSize = this.baseSize * 0.2;
+            const coreRatio = distance / coreRadius;
+            renderSize = this.baseSize * (0.85 + coreRatio * 0.25);
           } else if (distance < orbitZone) {
             const breathe = 1 + Math.sin(time / 600 + this.breathePhase) * 0.5;
             renderSize = this.baseSize * 1.8 * breathe;
@@ -125,8 +126,10 @@ const CursorEffect = () => {
             } else {
               // --- ATTRACTION MODE ---
               const attractStrength = 0.08;
-              this.vx += (dx / distance) * attractStrength;
-              this.vy += (dy / distance) * attractStrength;
+              if (distance > 0.0001) {
+                this.vx += (dx / distance) * attractStrength;
+                this.vy += (dy / distance) * attractStrength;
+              }
 
               if (distance < this.orbitRadius + 20) {
                 this.captured = true;
