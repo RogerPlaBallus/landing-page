@@ -17,18 +17,9 @@ const CursorEffect = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const mouse = { x: null, y: null, vx: 0, vy: 0 };
-    const influenceRadius = 520;
-    const gravityOffsetY = 28;
-    const coreRadius = 54;
-    const orbitZone = 150;
-    const particleSizeMultiplier = 2;
+    const mouse = { x: null, y: null };
 
     const handleMouseMove = (e) => {
-      if (mouse.x !== null && mouse.y !== null) {
-        mouse.vx = e.clientX - mouse.x;
-        mouse.vy = e.clientY - mouse.y;
-      }
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
@@ -36,15 +27,13 @@ const CursorEffect = () => {
     const handleMouseLeave = () => {
       mouse.x = null;
       mouse.y = null;
-      mouse.vx = 0;
-      mouse.vy = 0;
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseout', handleMouseLeave);
 
     const particlesArray = [];
-    const numberOfParticles = 25;
+    const numberOfParticles = 150;
 
     class Particle {
       constructor() {
@@ -63,9 +52,9 @@ const CursorEffect = () => {
           else { this.x = -10; this.y = Math.random() * canvas.height; }
         }
 
-        this.baseSize = (Math.random() * 2 + 0.5) * particleSizeMultiplier;
-        this.vx = (Math.random() - 0.5) * 1.6;
-        this.vy = (Math.random() - 0.5) * 1.6;
+        this.baseSize = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
 
         // Orbit properties
         this.angle = Math.random() * Math.PI * 2;
@@ -73,8 +62,6 @@ const CursorEffect = () => {
         this.orbitRadius = Math.random() * 60 + 40;
         this.captured = false;
         this.breathePhase = Math.random() * Math.PI * 2;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-        this.pulseSpeed = 0.012 + Math.random() * 0.008;
 
         this.alpha = 0;
       }
@@ -82,23 +69,23 @@ const CursorEffect = () => {
       draw(time) {
         if (this.alpha <= 0.05) return;
 
-        const pulse = (Math.sin(time * this.pulseSpeed + this.pulsePhase) + 1) * 0.5;
-        let renderSize = this.baseSize * (0.95 + pulse * 0.55);
+        let renderSize = this.baseSize;
 
         if (mouse.x !== null && mouse.y !== null) {
-          const gravityX = mouse.x;
-          const gravityY = mouse.y + gravityOffsetY;
-          const dx = gravityX - this.x;
-          const dy = gravityY - this.y;
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const zonePulse = (Math.sin(time / 230 + this.breathePhase) + 1) * 0.5;
+
+          const coreRadius = 30;
+          const orbitZone = 120;
 
           if (distance < coreRadius) {
-            renderSize = this.baseSize * (1 + zonePulse * 0.95);
+            renderSize = this.baseSize * 0.2;
           } else if (distance < orbitZone) {
-            renderSize = this.baseSize * (1.35 + zonePulse * 1.45);
+            const breathe = 1 + Math.sin(time / 600 + this.breathePhase) * 0.5;
+            renderSize = this.baseSize * 1.8 * breathe;
           } else {
-            renderSize = this.baseSize * (0.95 + pulse * 0.55);
+            renderSize = this.baseSize;
           }
         }
 
@@ -108,67 +95,59 @@ const CursorEffect = () => {
         ctx.fill();
       }
 
-      update() {
+      update(time) {
+        const influenceRadius = 400;
+
         if (mouse.x !== null && mouse.y !== null) {
-          const gravityX = mouse.x;
-          const gravityY = mouse.y + gravityOffsetY;
-          const dx = gravityX - this.x;
-          const dy = gravityY - this.y;
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const safeDistance = Math.max(distance, 1);
 
           if (distance < influenceRadius) {
-            const normalizedDistance = 1 - safeDistance / influenceRadius;
-            const targetAlpha = Math.max(0.18, Math.pow(normalizedDistance, 1.35) * 0.95);
-            this.alpha += (targetAlpha - this.alpha) * 0.22;
+            const targetAlpha = Math.pow((influenceRadius - distance) / influenceRadius, 1.5) * 0.9;
+            this.alpha += (targetAlpha - this.alpha) * 0.1;
 
-            const nx = dx / safeDistance;
-            const ny = dy / safeDistance;
-            const tangentX = -ny;
-            const tangentY = nx;
-            const swirlDirection =
-              (Math.abs(mouse.vx) > 0.1 || Math.abs(mouse.vy) > 0.1)
-                ? Math.sign(mouse.vx || mouse.vy)
-                : Math.sign(this.orbitSpeed) || 1;
+            if (this.captured) {
+              // --- ORBIT MODE ---
+              this.angle += this.orbitSpeed;
+              const targetX = mouse.x + Math.cos(this.angle) * this.orbitRadius;
+              const targetY = mouse.y + Math.sin(this.angle) * this.orbitRadius;
 
-            const attractStrength = 0.12 + normalizedDistance * 0.48;
-            const swirlStrength = normalizedDistance * 0.14;
+              this.x += (targetX - this.x) * 0.12;
+              this.y += (targetY - this.y) * 0.12;
 
-            this.vx += nx * attractStrength;
-            this.vy += ny * attractStrength;
+              this.vx *= 0.9;
+              this.vy *= 0.9;
 
-            // Tangential force keeps particles flowing around the core instead of disappearing into it.
-            this.vx += tangentX * swirlStrength * swirlDirection;
-            this.vy += tangentY * swirlStrength * swirlDirection;
+              if (distance > this.orbitRadius + 80) {
+                this.captured = false;
+              }
+            } else {
+              // --- ATTRACTION MODE ---
+              const attractStrength = 0.08;
+              this.vx += (dx / distance) * attractStrength;
+              this.vy += (dy / distance) * attractStrength;
 
-            const cursorStepX = Math.max(-24, Math.min(24, mouse.vx));
-            const cursorStepY = Math.max(-24, Math.min(24, mouse.vy));
-            const cursorDrag = normalizedDistance * 0.6;
-            this.x += cursorStepX * cursorDrag;
-            this.y += cursorStepY * cursorDrag;
+              if (distance < this.orbitRadius + 20) {
+                this.captured = true;
+                this.angle = Math.atan2(this.y - mouse.y, this.x - mouse.x);
+              }
 
-            if (distance < coreRadius) {
-              const repelStrength = ((coreRadius - safeDistance) / coreRadius) * 0.8;
-              this.vx -= nx * repelStrength;
-              this.vy -= ny * repelStrength;
+              this.vx *= 0.97;
+              this.vy *= 0.97;
+
+              this.x += this.vx;
+              this.y += this.vy;
             }
-
-            this.vx *= distance < orbitZone ? 0.985 : 0.993;
-            this.vy *= distance < orbitZone ? 0.985 : 0.993;
-
-            this.x += this.vx;
-            this.y += this.vy;
           } else {
-            this.alpha += (0 - this.alpha) * 0.03;
-            this.vx *= 0.992;
-            this.vy *= 0.992;
+            this.captured = false;
+            this.alpha += (0 - this.alpha) * 0.05;
             this.x += this.vx;
             this.y += this.vy;
           }
         } else {
-          this.alpha += (0 - this.alpha) * 0.03;
-          this.vx *= 0.992;
-          this.vy *= 0.992;
+          this.captured = false;
+          this.alpha += (0 - this.alpha) * 0.05;
           this.x += this.vx;
           this.y += this.vy;
         }
@@ -192,13 +171,8 @@ const CursorEffect = () => {
       ctx.globalCompositeOperation = 'source-over';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      mouse.vx *= 0.8;
-      mouse.vy *= 0.8;
-      if (Math.abs(mouse.vx) < 0.01) mouse.vx = 0;
-      if (Math.abs(mouse.vy) < 0.01) mouse.vy = 0;
-
       for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
+        particlesArray[i].update(time);
         particlesArray[i].draw(time);
       }
       animationFrameId = requestAnimationFrame(animate);
@@ -219,10 +193,8 @@ const CursorEffect = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-9999"
-      style={{ zIndex: 99999 }}
     />
   );
 };
 
 export default CursorEffect;
-
