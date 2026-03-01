@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="w-full py-10 mt-20 border-t border-cyan-500/20 bg-[#0b1120]">
+    <footer className="relative z-10 w-full py-10 mt-20 border-t border-cyan-500/20 bg-[#0b1120]">
       <div className="max-w-6xl mx-auto px-4 flex flex-col items-center space-y-5">
 
         {/* Open Source philosophy */}

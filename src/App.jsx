@@ -17,7 +17,7 @@ function App() {
       <Navbar />
 
       {/* 2. Main Content Area */}
-      <main className="pt-16"> {/* pt-16 adds padding to push content below the fixed Navbar */}
+      <main className="pt-16 relative z-10"> {/* pt-16 adds padding to push content below the fixed Navbar */}
         
         {/* Section: About Me */}
         <About />

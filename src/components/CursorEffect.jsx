@@ -29,8 +29,8 @@ const CursorEffect = () => {
     const particlesArray = [];
     const numberOfParticles = 140;
     const coreRadius = 30;
-    const orbitZone = 370;
-    const minOrbitSlotSeparation = 26;
+    const orbitZone = 260;
+    const minOrbitSlotSeparation = 18;
     const sharedWaveSpeed = 3.6;
     const sharedWaveAmplitude = 13;
     const sharedWaveAngularFrequency = 2.2;
@@ -230,7 +230,7 @@ const CursorEffect = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-9999"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
     />
   );
 };
