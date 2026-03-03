@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
  import profileImg from '../assets/profile.png';
 
 const About = () => {
+  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
+
+  const openCvModal = () => setIsCvModalOpen(true);
+  const closeCvModal = () => setIsCvModalOpen(false);
+
+  const handleDownload = (fileName) => {
+    const link = document.createElement('a');
+    link.href = `${import.meta.env.BASE_URL}CV/${fileName}`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    closeCvModal();
+  };
+
+  useEffect(() => {
+    if (!isCvModalOpen) {
+      return undefined;
+    }
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeCvModal();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isCvModalOpen]);
+
   return (
+    <>
     <section id="about" className="min-h-screen flex items-center pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative">
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full z-10">
@@ -31,10 +64,14 @@ const About = () => {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
             
-            <a href={`${import.meta.env.BASE_URL}cv.pdf`} download="Roger-CV.pdf" className="flex items-center justify-center px-6 py-3 border border-gray-600 text-gray-300 font-medium rounded-lg hover:bg-white/5 transition">
+            <button
+              type="button"
+              onClick={openCvModal}
+              className="flex items-center justify-center px-6 py-3 border border-gray-600 text-gray-300 font-medium rounded-lg hover:bg-white/5 transition cursor-pointer"
+            >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
               Download CV
-            </a>
+            </button>
           </div>
 
           {/* Stats Section */}
@@ -69,6 +106,64 @@ const About = () => {
         </div>
       </div>
     </section>
+
+    {isCvModalOpen && (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center px-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cv-modal-title"
+      >
+        <button
+          type="button"
+          aria-label="Close CV language selection"
+          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          onClick={closeCvModal}
+        />
+
+        <div className="relative w-full max-w-md rounded-2xl border border-cyan-500/30 bg-slate-900/95 p-6 shadow-2xl shadow-cyan-500/20">
+          <h3 id="cv-modal-title" className="text-2xl font-bold text-white">
+            Choose CV language
+          </h3>
+          <p className="mt-2 text-sm text-gray-300">
+            Select one option to download your preferred version.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <button
+              type="button"
+              className="rounded-lg bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-500/20 cursor-pointer"
+              onClick={() => handleDownload('CV-EN.pdf')}
+            >
+              English
+            </button>
+            <button
+              type="button"
+              className="rounded-lg bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-500/20 cursor-pointer"
+              onClick={() => handleDownload('CV-ES.pdf')}
+            >
+              Spanish
+            </button>
+            <button
+              type="button"
+              className="rounded-lg bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-500/20 cursor-pointer"
+              onClick={() => handleDownload('CV-CAT.pdf')}
+            >
+              Catalan
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="mt-5 text-sm text-gray-400 transition hover:text-white cursor-pointer"
+            onClick={closeCvModal}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
