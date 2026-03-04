@@ -14,9 +14,9 @@ const Projects = () => {
     },
     {
       title: "Ball Game",
-      description: "An interactive, browser-based physics game utilizing canvas rendering and game loops.",
+      description: "An interactive, browser-based physics game utilizing canvas rendering.",
       image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-      tech: ["JavaScript", "HTML5 Canvas", "CSS3"],
+      tech: ["JavaScript", "Phaser 3", "CSS3"],
       liveLink: "https://rogerplaballus.github.io/BALL-GAME/",
       githubLink: "https://github.com/RogerPlaBallus/BALL-GAME"
     },
@@ -51,14 +51,6 @@ const Projects = () => {
       tech: ["Java"],
       liveLink: null,
       githubLink: "https://github.com/RogerPlaBallus/MorseCodeTranslator"
-    },
-    {
-      title: "To-Do List",
-      description: "A simple To-Do List application built with Java.",
-      image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80",
-      tech: ["Java"],
-      liveLink: null,
-      githubLink: "https://github.com/RogerPlaBallus/To-Do-List"
     }
   ];
 
