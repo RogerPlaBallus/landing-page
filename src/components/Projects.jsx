@@ -46,11 +46,11 @@ const Projects = () => {
     },
     {
       title: "Morse Code Translator",
-      description: "A reliable utility script that translates English text inputs into accurate Morse code with audio output.",
+      description: "Translate English text inputs into accurate Morse code with audio output.",
       image: "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=800&q=80",
-      tech: ["Java"],
-      liveLink: null,
-      githubLink: "https://github.com/RogerPlaBallus/MorseCodeTranslator"
+      tech: ["Node.js", "React", "TypeScript", "Tailwind CSS", "Vite"],
+      liveLink: "https://rogerplaballus.github.io/Morse_Code_Translator_TS-React-Tailwind/",
+      githubLink: "https://github.com/RogerPlaBallus/Morse_Code_Translator_TS-React-Tailwind"
     }
   ];
 
