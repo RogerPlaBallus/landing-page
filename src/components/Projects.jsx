@@ -41,7 +41,7 @@ const Projects = () => {
       description: "A full-stack REST API built to log, manage, and retrieve users' daily physical activities.",
       image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
       tech: ["Node.js", "Express", "SQLite"],
-      liveLink: null,
+      liveLink: "https://exercise-tracker-kappa-mocha.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/Exercise-Tracker"
     },
     {
