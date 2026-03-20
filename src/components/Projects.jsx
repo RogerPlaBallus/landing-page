@@ -33,7 +33,7 @@ const Projects = () => {
       description: "A simple CRM system for managing customer data and sales transactions.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
       tech: ["Node.js", "Express", "Database"],
-      liveLink: null, // Since this one has no .io link, the button visually hides!
+      liveLink: "https://clients-sales.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
     },
     {
