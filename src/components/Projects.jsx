@@ -21,18 +21,10 @@ const Projects = () => {
       githubLink: "https://github.com/RogerPlaBallus/BALL-GAME"
     },
     {
-      title: "Password Generator",
-      description: "A secure tool for generating random passwords in one click.",
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=800&auto=format&fit=crop",
-      tech: ["JavaScript", "DOM Manipulation", "CSS"],
-      liveLink: "https://rogerplaballus.github.io/Password-Generator-JS/",
-      githubLink: "https://github.com/RogerPlaBallus/Password-Generator-JS"
-    },
-    {
       title: "Clients & Sales",
       description: "A simple CRM system for managing customer data and sales transactions.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-      tech: ["Node.js", "Express", "Database"],
+      tech: ["Node.js", "Express", "SQLite"],
       liveLink: "https://clients-sales.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
     },
@@ -48,9 +40,17 @@ const Projects = () => {
       title: "Morse Code Translator",
       description: "Translate English text inputs into accurate Morse code with audio output.",
       image: "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=800&q=80",
-      tech: ["Node.js", "React", "TypeScript", "Tailwind CSS", "Vite"],
+      tech: ["Node.js", "React", "TypeScript", "Tailwind CSS"],
       liveLink: "https://rogerplaballus.github.io/Morse_Code_Translator_TS-React-Tailwind/",
       githubLink: "https://github.com/RogerPlaBallus/Morse_Code_Translator_TS-React-Tailwind"
+    },
+    {
+      title: "Password Generator",
+      description: "A secure tool for generating random passwords in one click.",
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=800&auto=format&fit=crop",
+      tech: ["JavaScript", "DOM Manipulation", "CSS"],
+      liveLink: "https://rogerplaballus.github.io/Password-Generator-JS/",
+      githubLink: "https://github.com/RogerPlaBallus/Password-Generator-JS"
     }
   ];
 
