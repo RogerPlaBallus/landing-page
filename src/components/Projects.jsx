@@ -7,7 +7,6 @@ const Projects = () => {
     {
       title: "Weather App",
       description: "A real-time weather application fetching current conditions and forecasts for any city.",
-      image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80",
       tech: ["HTML", "CSS", "JavaScript"],
       liveLink: "https://rogerplaballus.github.io/weather-app/",
       githubLink: "https://github.com/RogerPlaBallus/weather-app"
@@ -15,7 +14,6 @@ const Projects = () => {
     {
       title: "Ball Game",
       description: "An interactive, browser-based physics game utilizing canvas rendering.",
-      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
       tech: ["JavaScript", "Phaser 3", "CSS3"],
       liveLink: "https://rogerplaballus.github.io/BALL-GAME/",
       githubLink: "https://github.com/RogerPlaBallus/BALL-GAME"
@@ -23,7 +21,6 @@ const Projects = () => {
     {
       title: "Clients & Sales",
       description: "A simple CRM system for managing customer data and sales transactions.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
       tech: ["Node.js", "Express", "SQLite"],
       liveLink: "https://clients-sales.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
@@ -31,7 +28,6 @@ const Projects = () => {
     {
       title: "Exercise Tracker",
       description: "A full-stack REST API built to log, manage, and retrieve users' daily physical activities.",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
       tech: ["Node.js", "Express", "SQLite"],
       liveLink: "https://exercise-tracker-kappa-mocha.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/Exercise-Tracker"
@@ -39,7 +35,6 @@ const Projects = () => {
     {
       title: "Morse Code Translator",
       description: "Translate English text inputs into accurate Morse code with audio output.",
-      image: "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=800&q=80",
       tech: ["Node.js", "React", "TypeScript", "Tailwind CSS"],
       liveLink: "https://rogerplaballus.github.io/Morse_Code_Translator_TS-React-Tailwind/",
       githubLink: "https://github.com/RogerPlaBallus/Morse_Code_Translator_TS-React-Tailwind"
@@ -47,7 +42,6 @@ const Projects = () => {
     {
       title: "Password Generator",
       description: "A secure tool for generating random passwords in one click.",
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=800&auto=format&fit=crop",
       tech: ["JavaScript", "DOM Manipulation", "CSS"],
       liveLink: "https://rogerplaballus.github.io/Password-Generator-JS/",
       githubLink: "https://github.com/RogerPlaBallus/Password-Generator-JS"
@@ -55,14 +49,14 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-gray-800">
+    <section id="projects" className="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#a0864d]/20 scroll-mt-24">
       
       {/* Header */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Featured <span className="text-cyan-400">Projects</span>
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#2d2d2d] tracking-tight mb-4">
+          Featured <span className="text-[#8b6f47]">Projects</span>
         </h2>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+        <p className="text-lg text-[#777] max-w-2xl mx-auto">
           Here is a selection of my recent work.
         </p>
       </div>
@@ -72,54 +66,44 @@ const Projects = () => {
         {projectsList.map((project, idx) => (
           <div 
             key={idx} 
-            className="group flex flex-col bg-[#111827] rounded-2xl border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 shadow-xl overflow-hidden"
+            className="group flex flex-col bg-[#f5f1ed] rounded-2xl border border-[#a0864d]/20 hover:border-[#a0864d]/50 transition-all duration-300 shadow-sm overflow-hidden p-6"
           >
-            {/* Image (Placeholder using Unsplash Images) */}
-            <div className="relative h-48 w-full overflow-hidden">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-[#111827] to-transparent opacity-80" />
-            </div>
-
-            {/* Content under the image */}
-            <div className="flex flex-col grow p-6">
+            {/* Content */}
+            <div className="flex flex-col grow">
               
               {/* Title and Tech Badges */}
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-2xl font-bold text-[#2d2d2d] mb-2 group-hover:text-[#8b6f47] transition-colors">
                 {project.title}
               </h3>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((t, idx) => (
-                  <span key={idx} className="bg-cyan-500/10 text-cyan-300 text-xs font-medium px-2.5 py-1 rounded-full border border-cyan-500/20">
+                  <span key={idx} className="bg-[#a0864d]/10 text-[#704d24] text-xs font-medium px-2.5 py-1 rounded-full border border-[#a0864d]/30">
                     {t}
                   </span>
                 ))}
               </div>
               
               {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed grow">
+              <p className="text-[#777] text-sm leading-relaxed grow">
                 {project.description}
               </p>
 
               {/* Action Buttons */}
-              <div className="mt-8 flex items-center justify-between pt-4 border-t border-gray-800">
-                {/* 1. Only show the Live Site link if it actually exists (has .io in your links) */}
+              <div className="mt-6 flex items-center justify-between pt-4 border-t border-[#a0864d]/20">
+                {/* 1. Live Link */}
                 {project.liveLink ? (
                   <a 
                     href={project.liveLink} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="flex items-center text-cyan-400 hover:text-cyan-300 text-sm font-semibold transition-colors"
+                    className="flex items-center text-[#8b6f47] hover:text-[#9a7d52] text-sm font-semibold transition-colors"
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
                   </a>
                 ) : (
-                  <span className="text-gray-600 text-sm italic">Backend Only</span>
+                  <span className="text-[#ccc] text-sm italic">Backend Only</span>
                 )}
 
                 {/* 2. GitHub Link */}
@@ -127,13 +111,12 @@ const Projects = () => {
                   href={project.githubLink} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="flex items-center text-gray-300 hover:text-white text-sm font-semibold transition-colors bg-[#1f2937] px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-500"
+                  className="flex items-center text-[#666] hover:text-[#2d2d2d] text-sm font-semibold transition-colors bg-[#a0864d]/10 px-3 py-1.5 rounded-lg border border-[#a0864d]/20 hover:border-[#a0864d]/50"
                 >
                   <FaGithub className="w-4 h-4 mr-2" />
                   Code
                 </a>
               </div>
-
             </div>
           </div>
         ))}

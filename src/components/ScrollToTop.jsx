@@ -24,17 +24,17 @@ const ScrollToTop = () => {
       className={`
         fixed bottom-8 right-8 z-50
         w-12 h-12 rounded-full
-        bg-[#111827] border border-gray-700
+        bg-[#f5f1ed] border border-[#a0864d]/30
         flex items-center justify-center
-        shadow-lg shadow-black/30
+        shadow-md shadow-black/10
         transition-all duration-300 ease-in-out
-        hover:border-cyan-500/50 hover:bg-cyan-500/10 hover:shadow-cyan-500/20 hover:-translate-y-1
+        hover:border-[#8b6f47] hover:bg-[#a0864d]/10 hover:-translate-y-1
         cursor-pointer
         ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'}
       `}
     >
       <svg
-        className="w-5 h-5 text-cyan-400"
+        className="w-5 h-5 text-[#8b6f47]"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

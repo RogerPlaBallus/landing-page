@@ -4,15 +4,13 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import CursorEffect from './components/CursorEffect';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 
 function App() {
   return (  /*background color */
-    <div className="bg-[#0b1120] text-white min-h-screen font-sans selection:bg-cyan-500/30">
-    
-      <CursorEffect />   
+    <div className="bg-[#ede6e1] text-[#2d2d2d] min-h-screen font-sans selection:bg-[#a0864d]/30">
+      
       {/* 1. Our new Header */}
       <Navbar />
 

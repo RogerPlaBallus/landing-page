@@ -40,13 +40,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#0b1120] backdrop-blur-md border-b border-gray-800 z-50">
+    <nav className="fixed top-0 left-0 w-full bg-[#ede6e1] backdrop-blur-md border-b border-[#a0864d]/20 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
           <div className="shrink-0">
-            <a href="#" className="text-xl font-bold tracking-tight text-white">
-              My <span className="text-cyan-400">Portfolio</span>
+            <a href="#" className="text-xl font-bold tracking-tight text-[#2d2d2d]">
+              My <span className="text-[#8b6f47]">Portfolio</span>
             </a>
           </div>
 
@@ -62,8 +62,8 @@ const Navbar = () => {
                   className={`
                     transition-all duration-300 font-medium
                     ${isActive
-                      ? 'text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.4)]'
-                      : 'text-gray-300 hover:text-cyan-400'
+                      ? 'text-[#8b6f47]'
+                      : 'text-[#666] hover:text-[#8b6f47]'
                     }
                   `}
                 >
