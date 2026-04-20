@@ -38,65 +38,85 @@ const About = () => {
 
   return (
     <>
-    <section id="about" className="min-h-screen flex items-center pt-16 pb-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative scroll-mt-24">
+    <section id="about" className="min-h-screen flex items-center py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative scroll-mt-24">
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full z-10">
         
         {/* Left Side: Text Content */}
-        <div className="flex flex-col space-y-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#2d2d2d] tracking-tight">
-            Hi, I'm <span className="text-[#8b6f47]">Roger!</span>
-          </h1>
-          
-          <h2 className="text-xl md:text-2xl font-medium text-[#666]">
-            Full-Stack Developer 
-          </h2>
-          
-          <p className="text-base md:text-lg text-[#777] max-w-xl leading-relaxed">
-            I create solutions and solve problems. I will add value to your company.
-            Let's work together! 
-          </p>
+        <div className="flex flex-col space-y-8">
+          {/* Main Heading */}
+          <div>
+            <h1 className="text-5xl md:text-6xl font-extrabold text-[#2d2d2d] tracking-tighter leading-tight mb-2">
+              Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-[#8b6f47] to-[#c99f5a]">Roger!</span>
+            </h1>
+            
+            <h2 className="text-xl md:text-2xl font-medium text-[#666] mt-4">
+              Full-Stack Developer & Problem Solver
+            </h2>
+            
+            <p className="text-base md:text-lg text-[#777] max-w-xl leading-relaxed mt-4">
+              I create elegant solutions to complex problems. Let's build something remarkable together.
+            </p>
+          </div>
 
-          {/* Interactive Buttons */}
-          <div className="flex flex-wrap gap-4 pt-2">
-            <a href="#contact" className="flex items-center justify-center px-6 py-3 bg-[#8b6f47] text-white font-medium rounded-lg hover:bg-[#9a7d52] transition transform hover:-translate-y-0.5 shadow-md">
-              Contact Me 
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            {/* Primary CTA */}
+            <a 
+              href="#contact" 
+              className="group flex items-center justify-center px-8 py-3.5 bg-linear-to-r from-[#8b6f47] to-[#9a7d52] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#8b6f47] focus:ring-offset-2"
+            >
+              Get in Touch
+              <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
             </a>
             
+            {/* Secondary CTA */}
             <button
               type="button"
               onClick={openCvModal}
-              className="flex items-center justify-center px-6 py-3 border border-[#a0864d] text-[#666] font-medium rounded-lg hover:bg-[#a0864d]/5 transition cursor-pointer"
+              className="group flex items-center justify-center px-8 py-3.5 border-2 border-[#8b6f47] text-[#8b6f47] font-semibold rounded-lg hover:bg-[#8b6f47]/5 hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8b6f47] focus:ring-offset-2 focus:ring-offset-[#ede6e1]"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
               Download CV
             </button>
           </div>
 
-          {/* Stats Section */}
-          <div className="flex gap-8 pt-8">
-            <div>
+          {/* Stats Micro Cards */}
+          <div className="grid grid-cols-2 gap-4 pt-8">
+            {/* Stat 1: Projects */}
+            <div className="bg-[#f5f1ed] border border-[#a0864d]/20 rounded-lg p-4 hover:border-[#a0864d]/40 hover:shadow-sm transition-all duration-300">
               <p className="text-2xl md:text-3xl font-bold text-[#8b6f47]">20+</p>
-              <p className="text-sm md:text-base text-[#777] mt-1">Projects</p>
+              <p className="text-xs md:text-sm text-[#777] mt-2 font-medium">Projects Completed</p>
             </div>
-            <div>
+            
+            {/* Stat 2: Experience */}
+            <div className="bg-[#f5f1ed] border border-[#a0864d]/20 rounded-lg p-4 hover:border-[#a0864d]/40 hover:shadow-sm transition-all duration-300">
               <p className="text-2xl md:text-3xl font-bold text-[#8b6f47]">2+</p>
-              <p className="text-sm md:text-base text-[#777] mt-1">Years</p>
-            </div>           
+              <p className="text-xs md:text-sm text-[#777] mt-2 font-medium">Years Experience</p>
+            </div>
           </div>
         </div>
 
-           {/* Right Side: Profile Image */}
-        <div className="relative flex justify-center items-center mt-10 md:mt-0">
-          {/* Subtle border ring */}
-          <div className="relative w-65 h-65 md:w-82.5 md:h-82.5 rounded-full p-0.75 bg-[#a0864d]">
-            {/* Inner circle that holds the image */}
-            <div className="w-full h-full rounded-full overflow-hidden bg-[#ede6e1]">
+        {/* Right Side: Premium Profile Image */}
+        <div className="relative flex justify-center items-center mt-12 md:mt-0">
+          
+          {/* Halo effect (background glow) */}
+          <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#8b6f47]/20 to-[#a0864d]/10 blur-3xl scale-105"></div>
+          
+          {/* Inner shadow ring for depth */}
+          <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full p-1.5 bg-[#a0864d] shadow-2xl" style={{
+            boxShadow: '0 0 40px rgba(139, 111, 71, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+          }}>
+            {/* Image container */}
+            <div className="w-full h-full rounded-full overflow-hidden bg-[#ede6e1] shadow-inner">
               <img 
                 src={profileImg}
                 alt="Roger" 
-                className="w-full h-full object-cover object-[center_100%]"
+                className="w-full h-full object-cover object-[center_100%] hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
@@ -129,21 +149,21 @@ const About = () => {
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <button
               type="button"
-              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer"
+              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8b6f47]"
               onClick={() => handleDownload('CV-EN.pdf')}
             >
               English
             </button>
             <button
               type="button"
-              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer"
+              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8b6f47]"
               onClick={() => handleDownload('CV-ES.pdf')}
             >
               Spanish
             </button>
             <button
               type="button"
-              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer"
+              className="rounded-lg bg-[#a0864d]/10 px-4 py-3 text-sm font-semibold text-[#8b6f47] transition hover:bg-[#a0864d]/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8b6f47]"
               onClick={() => handleDownload('CV-CAT.pdf')}
             >
               Catalan
@@ -152,7 +172,7 @@ const About = () => {
 
           <button
             type="button"
-            className="mt-5 text-sm text-[#999] transition hover:text-[#2d2d2d] cursor-pointer"
+            className="mt-5 text-sm text-[#999] transition hover:text-[#2d2d2d] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8b6f47] rounded px-2 py-1"
             onClick={closeCvModal}
           >
             Cancel

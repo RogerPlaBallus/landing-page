@@ -8,28 +8,47 @@ import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 
 function App() {
-  return (  /*background color */
-    <div className="bg-[#ede6e1] text-[#2d2d2d] min-h-screen font-sans selection:bg-[#a0864d]/30">
-      
-      {/* 1. Our new Header */}
-      <Navbar />
+  return (
+    <div className="relative min-h-screen">
+      {/* ===== BACKGROUND LAYER 1: Gradient Base ===== */}
+      <div className="fixed inset-0 z-0" style={{
+        background: 'linear-gradient(135deg, #ede6e1 0%, #f5f1ed 50%, #ede6e1 100%)',
+      }}></div>
 
-      {/* 2. Main Content Area */}
-      <main className="pt-16 relative z-10"> {/* pt-16 adds padding to push content below the fixed Navbar */}
-        
-        {/* Section: About Me */}
-        <About />
-        {/* Section: Skills */}
-        <Skills />
-        {/* Section: Projects */}
-        <Projects />
-        {/* Section: Contact */}
-        <Contact />
-      </main>
-      {/* 4. Footer */}
-      <Footer />
-      {/* 5. Scroll to Top Button */}
-      <ScrollToTop />
+      {/* ===== BACKGROUND LAYER 2: Paper/Grain Texture ===== */}
+      <div className="fixed inset-0 z-0 opacity-[0.025] pointer-events-none" style={{
+        backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="5"/></filter><rect width="200" height="200" fill="black" filter="url(%23grain)"/></svg>')`,
+        backgroundSize: '200px 200px',
+      }}></div>
+
+      {/* ===== BACKGROUND LAYER 3: Subtle Radial Accent ===== */}
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{
+        background: 'radial-gradient(circle at 75% 25%, rgba(160, 134, 77, 0.05) 0%, transparent 50%)',
+      }}></div>
+
+      {/* ===== CONTENT WRAPPER (relative positioning for proper layering) ===== */}
+      <div className="relative z-10 text-[#2d2d2d] font-sans selection:bg-[#a0864d]/30">
+        {/* 1. Our Navbar */}
+        <Navbar />
+
+        {/* 2. Main Content Area */}
+        <main className="pt-16">
+          {/* Section: About Me */}
+          <About />
+          {/* Section: Skills */}
+          <Skills />
+          {/* Section: Projects */}
+          <Projects />
+          {/* Section: Contact */}
+          <Contact />
+        </main>
+
+        {/* 4. Footer */}
+        <Footer />
+
+        {/* 5. Scroll to Top Button */}
+        <ScrollToTop />
+      </div>
     </div>
   );
 }

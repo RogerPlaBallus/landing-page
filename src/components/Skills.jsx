@@ -49,45 +49,55 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#a0864d]/20 scroll-mt-24">
+    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#a0864d]/15 scroll-mt-24">
       
-      {/* Section Header */}
-      <div className="text-center mb-12">
+      {/* Section Header - Left Aligned with Accent Line */}
+      <div className="mb-16 max-w-2xl">
+        <div className="flex items-baseline gap-3 mb-4">
+          <span className="text-xs font-bold text-[#8b6f47] uppercase tracking-widest">Technical Expertise</span>
+          <div className="h-1 w-10 bg-linear-to-r from-[#8b6f47] to-[#a0864d]"></div>
+        </div>
+        
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#2d2d2d] tracking-tight mb-4">
-          My <span className="text-[#8b6f47]">Skills</span>
+          My <span className="text-transparent bg-clip-text bg-linear-to-r from-[#8b6f47] to-[#c99f5a]">Toolkit</span>
         </h2>
-        <p className="text-lg text-[#777] max-w-2xl mx-auto">
-          Everything I use to bring ideas to life.
+        
+        <p className="text-lg text-[#777]">
+          Technologies and tools I use to build modern, scalable, and maintainable solutions.
         </p>
       </div>
 
-      {/* Grid of Skill Cards */}
+      {/* Grid of Skill Categories */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {skillCategories.map((category, idx) => (
-          <div 
-            key={idx} 
-            className="bg-[#f5f1ed] rounded-2xl p-6 border border-[#a0864d]/20 hover:border-[#a0864d]/50 transition-colors duration-300 shadow-sm"
-          >
-            {/* Card Title & Main Icon */}
-            <div className="flex items-center space-x-3 mb-6 border-b border-[#a0864d]/20 pb-4">
-              {category.icon}
-              <h3 className="text-2xl font-bold text-[#2d2d2d]">{category.title}</h3>
+          <div key={idx} className="group">
+            
+            {/* Category Header */}
+            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[#a0864d]/20">
+              <div className="p-2 bg-[#a0864d]/10 rounded-lg group-hover:bg-[#a0864d]/20 transition-colors duration-300">
+                {category.icon}
+              </div>
+              <h3 className="text-lg font-bold text-[#2d2d2d] group-hover:text-[#8b6f47] transition-colors duration-300">
+                {category.title}
+              </h3>
             </div>
 
-            {/* List of Individual Skills */}
-            <ul className="space-y-4">
+            {/* Skills List */}
+            <div className="flex flex-col gap-2">
               {category.skills.map((skill, skillIdx) => (
-                <li key={skillIdx} className="flex items-center space-x-3 group">
-                  <div className="p-2 bg-[#a0864d]/10 rounded-lg group-hover:bg-[#a0864d]/20 transition-colors">
+                <div 
+                  key={skillIdx} 
+                  className="flex items-center gap-2 p-3 bg-[#f5f1ed] rounded-lg border border-[#a0864d]/15 hover:border-[#a0864d]/40 hover:bg-[#fafaf8] transition-all duration-300 group/skill cursor-default"
+                >
+                  <div className="p-2 bg-[#a0864d]/10 rounded-lg group-hover/skill:bg-[#a0864d]/25 transition-colors">
                     {skill.logo}
                   </div>
-                  <span className="text-[#666] font-medium group-hover:text-[#8b6f47] transition-colors">
+                  <span className="text-[#666] text-sm font-semibold group-hover/skill:text-[#8b6f47] transition-colors">
                     {skill.name}
                   </span>
-                </li>
+                </div>
               ))}
-            </ul>
-
+            </div>
           </div>
         ))}
       </div>
