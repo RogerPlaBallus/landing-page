@@ -6,36 +6,36 @@
 
 :root {
   /* ---- Color Palette ---- */
-  --color-bg-primary: #ede6e1;      /* Main background */
-  --color-bg-secondary: #f5f1ed;    /* Card/surface background */
-  --color-bg-tertiary: #fafaf8;     /* Subtle alternate surface */
+  --color-bg-primary: #efebe6;      /* Main background */
+  --color-bg-secondary: #f7f3ee;    /* Card/surface background */
+  --color-bg-tertiary: #fbfaf8;     /* Subtle alternate surface */
   
   --color-text-primary: #2d2d2d;    /* Main text */
-  --color-text-secondary: #666666;  /* Secondary text */
-  --color-text-tertiary: #999999;   /* Tertiary/disabled text */
+  --color-text-secondary: #6f6a63;  /* Secondary text */
+  --color-text-tertiary: #9d9892;   /* Tertiary/disabled text */
   
-  --color-accent-primary: #8b6f47;  /* Main accent gold */
-  --color-accent-light: #c99f5a;    /* Light gold */
-  --color-accent-dark: #704d24;     /* Dark gold */
-  --color-accent-subtle: #a0864d;   /* Muted accent */
-  
-  --color-border-subtle: rgba(160, 134, 77, 0.2);    /* Soft borders */
-  --color-border-standard: rgba(160, 134, 77, 0.35); /* Medium borders */
-  --color-border-strong: rgba(160, 134, 77, 0.5);    /* Strong borders */
+  --color-accent-primary: #846644;  /* Main accent gold */
+  --color-accent-light: #c3a166;    /* Light gold */
+  --color-accent-dark: #6c4c29;     /* Dark gold */
+  --color-accent-subtle: #9b7d52;   /* Muted accent */
+
+  --color-border-subtle: rgba(132, 102, 68, 0.14);    /* Soft borders */
+  --color-border-standard: rgba(132, 102, 68, 0.24);  /* Medium borders */
+  --color-border-strong: rgba(132, 102, 68, 0.4);     /* Strong borders */
 
   /* ---- Shadow System (Profundity Scale) ---- */
   --shadow-none: 0 0 0 transparent;
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.14);
-  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.16);
-  --shadow-2xl: 0 16px 32px rgba(0, 0, 0, 0.18);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 14px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 22px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 14px 30px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 18px 36px rgba(0, 0, 0, 0.14);
   
   /* Elevated/Glow shadows */
-  --shadow-glow-sm: 0 0 8px rgba(139, 111, 71, 0.15);
-  --shadow-glow-md: 0 0 16px rgba(139, 111, 71, 0.2);
-  --shadow-glow-lg: 0 0 24px rgba(139, 111, 71, 0.25);
+  --shadow-glow-sm: 0 0 8px rgba(132, 102, 68, 0.1);
+  --shadow-glow-md: 0 0 16px rgba(132, 102, 68, 0.14);
+  --shadow-glow-lg: 0 0 24px rgba(132, 102, 68, 0.18);
   
   /* ---- Border Radius ---- */
   --radius-sm: 0.375rem;    /* 6px */
@@ -75,10 +75,10 @@
   --transition-slow: 350ms ease-out;
 
   /* ---- Gradients ---- */
-  --gradient-bg: linear-gradient(135deg, #ede6e1 0%, #f5f1ed 50%, #ede6e1 100%);
-  --gradient-bg-subtle: linear-gradient(180deg, rgba(245, 241, 237, 0.5) 0%, rgba(237, 230, 225, 0.3) 100%);
-  --gradient-accent: linear-gradient(135deg, #8b6f47 0%, #a0864d 100%);
-  --gradient-text-accent: linear-gradient(135deg, #8b6f47, #c99f5a);
+  --gradient-bg: linear-gradient(135deg, #efebe6 0%, #f7f3ee 52%, #efebe6 100%);
+  --gradient-bg-subtle: linear-gradient(180deg, rgba(247, 243, 238, 0.42) 0%, rgba(239, 235, 230, 0.24) 100%);
+  --gradient-accent: linear-gradient(135deg, #846644 0%, #9b7d52 100%);
+  --gradient-text-accent: linear-gradient(135deg, #846644, #c3a166);
 }
 
 html {
@@ -91,6 +91,8 @@ body {
   line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -101,6 +103,11 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   color: var(--color-text-secondary);
+}
+
+::selection {
+  background: rgba(132, 102, 68, 0.2);
+  color: var(--color-text-primary);
 }
 
 /* ---- Subtle Paper/Grain Texture (Global) ---- */
@@ -114,9 +121,9 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image: 
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="500" height="500" fill="%23ede6e1" filter="url(%23noise)"/></svg>');
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="500" height="500" fill="%23efebe6" filter="url(%23noise)"/></svg>');
   background-size: 100px 100px;
-  opacity: 0.03;
+  opacity: 0.02;
 }
 
 /* Ensure content is above texture */

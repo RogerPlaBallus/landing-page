@@ -12,7 +12,7 @@ function App() {
     <div className="relative min-h-screen">
       {/* ===== BACKGROUND LAYER 1: Gradient Base ===== */}
       <div className="fixed inset-0 z-0" style={{
-        background: 'linear-gradient(135deg, #ede6e1 0%, #f5f1ed 50%, #ede6e1 100%)',
+        background: 'linear-gradient(135deg, #efebe6 0%, #f7f3ee 52%, #efebe6 100%)',
       }}></div>
 
       {/* ===== BACKGROUND LAYER 2: Paper/Grain Texture ===== */}
@@ -23,11 +23,11 @@ function App() {
 
       {/* ===== BACKGROUND LAYER 3: Subtle Radial Accent ===== */}
       <div className="fixed inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(circle at 75% 25%, rgba(160, 134, 77, 0.05) 0%, transparent 50%)',
+        background: 'radial-gradient(circle at 75% 25%, rgba(132, 102, 68, 0.035) 0%, transparent 56%)',
       }}></div>
 
       {/* ===== CONTENT WRAPPER (relative positioning for proper layering) ===== */}
-      <div className="relative z-10 text-[#2d2d2d] font-sans selection:bg-[#a0864d]/30">
+      <div className="relative z-10 text-[#2d2d2d] font-sans selection:bg-[#846644]/20">
         {/* 1. Our Navbar */}
         <Navbar />
 

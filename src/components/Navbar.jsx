@@ -54,18 +54,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ${
       scrolled 
-        ? 'bg-[#ede6e1]/85 backdrop-blur-md shadow-md border-b border-[#a0864d]/15'
-        : 'bg-[#ede6e1]/70 backdrop-blur-sm border-b border-[#a0864d]/10'
+        ? 'bg-[#efebe6]/82 backdrop-blur-md shadow-sm border-b border-[#846644]/12'
+        : 'bg-[#efebe6]/68 backdrop-blur-sm border-b border-[#846644]/8'
     }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
           <div className="shrink-0">
-            <a href="#" className="text-lg font-bold tracking-tight text-[#2d2d2d] hover:text-[#8b6f47] transition-colors">
-              My <span className="text-[#8b6f47]">Portfolio</span>
+            <a href="#" className="text-lg font-bold tracking-tight text-[#2d2d2d] hover:text-[#846644] transition-colors">
+              My <span className="text-[#846644]">Portfolio</span>
             </a>
           </div>
 
@@ -80,11 +80,11 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className={`
-                    px-4 py-2 rounded-full transition-all duration-300 font-medium text-sm
-                    focus:outline-none focus:ring-2 focus:ring-[#8b6f47] focus:ring-offset-2 focus:ring-offset-[#ede6e1]
+                    px-4 py-2 rounded-full transition-all duration-200 font-medium text-sm
+                    focus:outline-none focus:ring-2 focus:ring-[#846644] focus:ring-offset-2 focus:ring-offset-[#efebe6]
                     ${isActive
-                      ? 'bg-[#8b6f47] text-white shadow-md'
-                      : 'text-[#666] hover:text-[#8b6f47] hover:bg-[#a0864d]/10'
+                      ? 'bg-[#846644] text-white shadow-sm'
+                      : 'text-[#6f6a63] hover:text-[#846644] hover:bg-[#846644]/8'
                     }
                   `}
                 >
@@ -97,7 +97,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-[#a0864d]/10 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-[#846644]/8 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -110,7 +110,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-[#a0864d]/10 pt-4 space-y-2 animate-in fade-in duration-200">
+          <div className="md:hidden pb-4 border-t border-[#846644]/10 pt-4 space-y-2 animate-in fade-in duration-200">
             {navLinks.map((link) => {
               const sectionId = link.href.replace('#', '');
               const isActive = activeSection === sectionId;
@@ -122,10 +122,10 @@ const Navbar = () => {
                   onClick={handleNavClick}
                   className={`
                     block px-4 py-2.5 rounded-lg transition-all duration-200 font-medium text-sm
-                    focus:outline-none focus:ring-2 focus:ring-[#8b6f47]
+                    focus:outline-none focus:ring-2 focus:ring-[#846644]
                     ${isActive
-                      ? 'bg-[#8b6f47] text-white shadow-sm'
-                      : 'text-[#666] hover:text-[#8b6f47] hover:bg-[#a0864d]/10'
+                      ? 'bg-[#846644] text-white shadow-sm'
+                      : 'text-[#6f6a63] hover:text-[#846644] hover:bg-[#846644]/8'
                     }
                   `}
                 >
