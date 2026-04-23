@@ -4,6 +4,13 @@ import { FaGithub } from "react-icons/fa";
 
 const Projects = () => {
   const projectsList = [
+     {
+      title: "Clients & Sales",
+      description: "A simple CRM system for managing customer data and sales transactions.",
+      tech: ["Node.js", "Express", "SQLite"],
+      liveLink: "https://clients-sales.vercel.app/",
+      githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
+    },
     {
       title: "Weather App",
       description: "A real-time weather application fetching current conditions and forecasts for any city.",
@@ -17,13 +24,6 @@ const Projects = () => {
       tech: ["JavaScript", "Phaser 3", "CSS3"],
       liveLink: "https://rogerplaballus.github.io/BALL-GAME/",
       githubLink: "https://github.com/RogerPlaBallus/BALL-GAME"
-    },
-    {
-      title: "Clients & Sales",
-      description: "A simple CRM system for managing customer data and sales transactions.",
-      tech: ["Node.js", "Express", "SQLite"],
-      liveLink: "https://clients-sales.vercel.app/",
-      githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
     },
     {
       title: "Exercise Tracker",
