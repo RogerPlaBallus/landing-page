@@ -44,15 +44,15 @@ const About = () => {
         <div className="flex flex-col space-y-8">
           {/* Main Heading */}
           <div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[#2d2d2d] tracking-[-0.04em] leading-tight mb-2">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-[#846644] to-[#c3a166]">Roger!</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold text-[#090d0a] tracking-[-0.04em] leading-tight mb-2">
+              Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-[#00a85a] to-[#006f3b]">Roger!</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl font-medium text-[#6f6a63] mt-4">
+            <h2 className="text-xl md:text-2xl font-medium text-[#2d332f] mt-4">
               Full-Stack Developer & Problem Solver
             </h2>
             
-            <p className="text-base md:text-lg text-[#6f6a63] max-w-xl leading-relaxed mt-4">
+            <p className="text-base md:text-lg text-[#2d332f] max-w-xl leading-relaxed mt-4">
               I find solutions to real problems. Let's work together.
             </p>
           </div>
@@ -62,7 +62,7 @@ const About = () => {
             {/* Primary CTA */}
             <a 
               href="#contact" 
-              className="group flex items-center justify-center px-8 py-3.5 bg-linear-to-r from-[#846644] to-[#9b7d52] text-white font-semibold rounded-lg hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#846644] focus:ring-offset-2"
+              className="group flex items-center justify-center px-8 py-3.5 bg-linear-to-r from-[#00a85a] to-[#006f3b] text-white font-semibold rounded-lg hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00a85a] focus:ring-offset-2"
             >
               Get in Touch
               <svg className="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@ const About = () => {
             <button
               type="button"
               onClick={openCvModal}
-              className="group flex items-center justify-center px-8 py-3.5 border-2 border-[#846644] text-[#846644] font-semibold rounded-lg hover:bg-[#846644]/6 hover:shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#846644] focus:ring-offset-2 focus:ring-offset-[#efebe6]"
+              className="group flex items-center justify-center px-8 py-3.5 border-2 border-[#00a85a] text-[#00a85a] font-semibold rounded-lg hover:bg-[#00a85a]/6 hover:shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00a85a] focus:ring-offset-2 focus:ring-offset-[#fbfdf9]"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
@@ -86,15 +86,15 @@ const About = () => {
           {/* Stats Micro Cards */}
           <div className="grid grid-cols-2 gap-4 pt-8">
             {/* Stat 1: Projects */}
-            <div className="bg-[#f7f3ee] border border-[#846644]/14 rounded-lg p-4 hover:border-[#846644]/24 hover:shadow-sm transition-all duration-200">
-              <p className="text-2xl md:text-3xl font-bold text-[#846644]">20+</p>
-              <p className="text-xs md:text-sm text-[#6f6a63] mt-2 font-medium">Projects Completed</p>
+            <div className="bg-[#ffffff] border border-[#00a85a]/14 rounded-lg p-4 hover:border-[#00a85a]/24 hover:shadow-sm transition-all duration-200">
+              <p className="text-2xl md:text-3xl font-bold text-[#00a85a]">20+</p>
+              <p className="text-xs md:text-sm text-[#2d332f] mt-2 font-medium">Projects Completed</p>
             </div>
             
             {/* Stat 2: Experience */}
-            <div className="bg-[#f7f3ee] border border-[#846644]/14 rounded-lg p-4 hover:border-[#846644]/24 hover:shadow-sm transition-all duration-200">
-              <p className="text-2xl md:text-3xl font-bold text-[#846644]">2+</p>
-              <p className="text-xs md:text-sm text-[#6f6a63] mt-2 font-medium">Years Experience</p>
+            <div className="bg-[#ffffff] border border-[#00a85a]/14 rounded-lg p-4 hover:border-[#00a85a]/24 hover:shadow-sm transition-all duration-200">
+              <p className="text-2xl md:text-3xl font-bold text-[#00a85a]">2+</p>
+              <p className="text-xs md:text-sm text-[#2d332f] mt-2 font-medium">Years Experience</p>
             </div>
           </div>
         </div>
@@ -103,14 +103,14 @@ const About = () => {
         <div className="relative flex justify-center items-center mt-12 md:mt-0">
           
           {/* Halo effect (background glow) */}
-          <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#846644]/14 to-[#9b7d52]/8 blur-3xl scale-105"></div>
+          <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#00a85a]/14 to-[#006f3b]/8 blur-3xl scale-105"></div>
           
           {/* Inner shadow ring for depth */}
-          <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full p-1.5 bg-[#9b7d52] shadow-xl" style={{
-            boxShadow: '0 0 32px rgba(132, 102, 68, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28)',
+          <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full p-1.5 bg-[#00a85a] shadow-xl" style={{
+            boxShadow: '0 0 32px rgba(0, 168, 90, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28)',
           }}>
             {/* Image container */}
-            <div className="w-full h-full rounded-full overflow-hidden bg-[#efebe6] shadow-inner">
+            <div className="w-full h-full rounded-full overflow-hidden bg-[#fbfdf9] shadow-inner">
               <img 
                 src={profileImg}
                 alt="Roger" 
@@ -136,32 +136,32 @@ const About = () => {
           onClick={closeCvModal}
         />
 
-        <div className="relative w-full max-w-md rounded-2xl border border-[#846644]/18 bg-[#f7f3ee]/96 p-6 shadow-md">
-          <h3 id="cv-modal-title" className="text-2xl font-bold text-[#2d2d2d] tracking-[-0.03em]">
+        <div className="relative w-full max-w-md rounded-2xl border border-[#00a85a]/18 bg-[#ffffff]/96 p-6 shadow-md">
+          <h3 id="cv-modal-title" className="text-2xl font-bold text-[#090d0a] tracking-[-0.03em]">
             Choose CV language
           </h3>
-          <p className="mt-2 text-sm text-[#6f6a63]">
+          <p className="mt-2 text-sm text-[#2d332f]">
             Select one option to download your preferred version.
           </p>
 
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <button
               type="button"
-              className="rounded-lg bg-[#846644]/8 px-4 py-3 text-sm font-semibold text-[#846644] transition hover:bg-[#846644]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#846644]"
+              className="rounded-lg bg-[#00a85a]/8 px-4 py-3 text-sm font-semibold text-[#00a85a] transition hover:bg-[#00a85a]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00a85a]"
               onClick={() => handleDownload('CV-EN.pdf')}
             >
               English
             </button>
             <button
               type="button"
-              className="rounded-lg bg-[#846644]/8 px-4 py-3 text-sm font-semibold text-[#846644] transition hover:bg-[#846644]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#846644]"
+              className="rounded-lg bg-[#00a85a]/8 px-4 py-3 text-sm font-semibold text-[#00a85a] transition hover:bg-[#00a85a]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00a85a]"
               onClick={() => handleDownload('CV-ES.pdf')}
             >
               Spanish
             </button>
             <button
               type="button"
-              className="rounded-lg bg-[#846644]/8 px-4 py-3 text-sm font-semibold text-[#846644] transition hover:bg-[#846644]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#846644]"
+              className="rounded-lg bg-[#00a85a]/8 px-4 py-3 text-sm font-semibold text-[#00a85a] transition hover:bg-[#00a85a]/14 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00a85a]"
               onClick={() => handleDownload('CV-CAT.pdf')}
             >
               Catalan
@@ -170,7 +170,7 @@ const About = () => {
 
           <button
             type="button"
-            className="mt-5 text-sm text-[#9d9892] transition hover:text-[#2d2d2d] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#846644] rounded px-2 py-1"
+            className="mt-5 text-sm text-[#68716a] transition hover:text-[#090d0a] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00a85a] rounded px-2 py-1"
             onClick={closeCvModal}
           >
             Cancel

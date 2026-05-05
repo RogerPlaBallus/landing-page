@@ -6,22 +6,22 @@
 
 :root {
   /* ---- Color Palette ---- */
-  --color-bg-primary: #efebe6;      /* Main background */
-  --color-bg-secondary: #f7f3ee;    /* Card/surface background */
-  --color-bg-tertiary: #fbfaf8;     /* Subtle alternate surface */
+  --color-bg-primary: #fbfdf9;      /* Main background */
+  --color-bg-secondary: #ffffff;    /* Card/surface background */
+  --color-bg-tertiary: #f3fbf5;     /* Subtle alternate surface */
   
-  --color-text-primary: #2d2d2d;    /* Main text */
-  --color-text-secondary: #6f6a63;  /* Secondary text */
-  --color-text-tertiary: #9d9892;   /* Tertiary/disabled text */
+  --color-text-primary: #090d0a;    /* Main text */
+  --color-text-secondary: #2d332f;  /* Secondary text */
+  --color-text-tertiary: #68716a;   /* Tertiary/disabled text */
   
-  --color-accent-primary: #846644;  /* Main accent gold */
-  --color-accent-light: #c3a166;    /* Light gold */
-  --color-accent-dark: #6c4c29;     /* Dark gold */
-  --color-accent-subtle: #9b7d52;   /* Muted accent */
+  --color-accent-primary: #00a85a;  /* Main intense green */
+  --color-accent-light: #34d979;    /* Light green */
+  --color-accent-dark: #006f3b;     /* Dark green */
+  --color-accent-subtle: #078f4f;   /* Muted green */
 
-  --color-border-subtle: rgba(132, 102, 68, 0.14);    /* Soft borders */
-  --color-border-standard: rgba(132, 102, 68, 0.24);  /* Medium borders */
-  --color-border-strong: rgba(132, 102, 68, 0.4);     /* Strong borders */
+  --color-border-subtle: rgba(0, 168, 90, 0.14);    /* Soft borders */
+  --color-border-standard: rgba(0, 168, 90, 0.24);  /* Medium borders */
+  --color-border-strong: rgba(0, 168, 90, 0.4);     /* Strong borders */
 
   /* ---- Shadow System (Profundity Scale) ---- */
   --shadow-none: 0 0 0 transparent;
@@ -33,9 +33,9 @@
   --shadow-2xl: 0 18px 36px rgba(0, 0, 0, 0.14);
   
   /* Elevated/Glow shadows */
-  --shadow-glow-sm: 0 0 8px rgba(132, 102, 68, 0.1);
-  --shadow-glow-md: 0 0 16px rgba(132, 102, 68, 0.14);
-  --shadow-glow-lg: 0 0 24px rgba(132, 102, 68, 0.18);
+  --shadow-glow-sm: 0 0 8px rgba(0, 168, 90, 0.1);
+  --shadow-glow-md: 0 0 16px rgba(0, 168, 90, 0.14);
+  --shadow-glow-lg: 0 0 24px rgba(0, 168, 90, 0.18);
   
   /* ---- Border Radius ---- */
   --radius-sm: 0.375rem;    /* 6px */
@@ -75,10 +75,10 @@
   --transition-slow: 350ms ease-out;
 
   /* ---- Gradients ---- */
-  --gradient-bg: linear-gradient(135deg, #efebe6 0%, #f7f3ee 52%, #efebe6 100%);
-  --gradient-bg-subtle: linear-gradient(180deg, rgba(247, 243, 238, 0.42) 0%, rgba(239, 235, 230, 0.24) 100%);
-  --gradient-accent: linear-gradient(135deg, #846644 0%, #9b7d52 100%);
-  --gradient-text-accent: linear-gradient(135deg, #846644, #c3a166);
+  --gradient-bg: linear-gradient(135deg, #fbfdf9 0%, #ffffff 52%, #f3fbf5 100%);
+  --gradient-bg-subtle: linear-gradient(180deg, rgba(255, 255, 255, 0.46) 0%, rgba(243, 251, 245, 0.28) 100%);
+  --gradient-accent: linear-gradient(135deg, #00a85a 0%, #006f3b 100%);
+  --gradient-text-accent: linear-gradient(135deg, #00a85a, #006f3b);
 }
 
 html {
@@ -106,7 +106,7 @@ p {
 }
 
 ::selection {
-  background: rgba(132, 102, 68, 0.2);
+  background: rgba(0, 168, 90, 0.2);
   color: var(--color-text-primary);
 }
 
@@ -121,7 +121,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image: 
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="500" height="500" fill="%23efebe6" filter="url(%23noise)"/></svg>');
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="500" height="500" fill="%23fbfdf9" filter="url(%23noise)"/></svg>');
   background-size: 100px 100px;
   opacity: 0.02;
 }

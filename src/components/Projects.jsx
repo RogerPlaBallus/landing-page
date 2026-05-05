@@ -49,20 +49,20 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-b border-[#846644]/12 scroll-mt-[5vh]"> 
+    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-b border-[#00a85a]/12 scroll-mt-[5vh]"> 
       
       {/* Section Header - Editorial Style */}
       <div className="mb-16">
         <div className="flex items-baseline gap-4 mb-4">
-          <span className="text-xs font-bold text-[#846644] uppercase tracking-widest">Featured Work</span>
-          <div className="flex-1 h-px bg-linear-to-r from-[#846644]/24 to-transparent"></div>
+          <span className="text-xs font-bold text-[#00a85a] uppercase tracking-widest">Featured Work</span>
+          <div className="flex-1 h-px bg-linear-to-r from-[#00a85a]/24 to-transparent"></div>
         </div>
         
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#2d2d2d] tracking-[-0.03em] mb-4">
-          Recent <span className="text-transparent bg-clip-text bg-linear-to-r from-[#846644] to-[#c3a166]">Projects</span>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#090d0a] tracking-[-0.03em] mb-4">
+          Recent <span className="text-transparent bg-clip-text bg-linear-to-r from-[#00a85a] to-[#006f3b]">Projects</span>
         </h2>
         
-        <p className="text-lg text-[#6f6a63] max-w-2xl">
+        <p className="text-lg text-[#2d332f] max-w-2xl">
           A selection of my latest work showcasing web development, problem-solving, and creative thinking.
         </p>
       </div>
@@ -72,35 +72,35 @@ const Projects = () => {
         {projectsList.map((project) => (
           <div 
             key={project.title}
-            className="group flex flex-col bg-[#f7f3ee] rounded-xl border border-[#846644]/12 hover:border-[#846644]/24 transition-all duration-200 shadow-sm hover:shadow-md overflow-hidden"
+            className="group flex flex-col bg-[#ffffff] rounded-xl border border-[#00a85a]/12 hover:border-[#00a85a]/24 transition-all duration-200 shadow-sm hover:shadow-md overflow-hidden"
           >
             {/* Accent Stripe */}
-            <div className="h-1.5 bg-linear-to-r from-[#846644] to-[#9b7d52]"></div>
+            <div className="h-1.5 bg-linear-to-r from-[#00a85a] to-[#006f3b]"></div>
 
             {/* Content */}
             <div className="flex flex-col grow p-6">
               
               {/* Title */}
-              <h3 className="text-2xl font-bold text-[#2d2d2d] mb-3 group-hover:text-[#846644] transition-colors">
+              <h3 className="text-2xl font-bold text-[#090d0a] mb-3 group-hover:text-[#00a85a] transition-colors">
                 {project.title}
               </h3>
               
               {/* Tech Badges */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((t, idx) => (
-                  <span key={idx} className="bg-[#846644]/8 text-[#6c4c29] text-xs font-medium px-3 py-1.5 rounded-full border border-[#846644]/16 hover:border-[#846644]/28 hover:bg-[#846644]/12 transition-all duration-200">
+                  <span key={idx} className="bg-[#00a85a]/8 text-[#006f3b] text-xs font-medium px-3 py-1.5 rounded-full border border-[#00a85a]/16 hover:border-[#00a85a]/28 hover:bg-[#00a85a]/12 transition-all duration-200">
                     {t}
                   </span>
                 ))}
               </div>
               
               {/* Description */}
-              <p className="text-[#6f6a63] text-sm leading-relaxed grow mb-6">
+              <p className="text-[#2d332f] text-sm leading-relaxed grow mb-6">
                 {project.description}
               </p>
 
               {/* Divider */}
-              <div className="border-t border-[#846644]/12 my-4"></div>
+              <div className="border-t border-[#00a85a]/12 my-4"></div>
 
               {/* Action Buttons */}
               <div className="flex items-center justify-between gap-3">
@@ -110,13 +110,13 @@ const Projects = () => {
                     href={project.liveLink} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="flex items-center text-[#846644] hover:text-[#9b7d52] text-sm font-semibold transition-colors gap-1 focus:outline-none focus:ring-2 focus:ring-[#846644] rounded px-1"
+                    className="flex items-center text-[#00a85a] hover:text-[#006f3b] text-sm font-semibold transition-colors gap-1 focus:outline-none focus:ring-2 focus:ring-[#00a85a] rounded px-1"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
                   </a>
                 ) : (
-                  <span className="text-[#b7b0a8] text-xs italic uppercase font-medium">Backend Only</span>
+                  <span className="text-[#68716a] text-xs italic uppercase font-medium">Backend Only</span>
                 )}
 
                 {/* 2. GitHub Link */}
@@ -124,7 +124,7 @@ const Projects = () => {
                   href={project.githubLink} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="flex items-center text-[#6f6a63] hover:text-white text-sm font-semibold transition-all duration-200 bg-[#846644]/10 hover:bg-[#846644] px-4 py-1.5 rounded-lg border border-[#846644]/14 hover:border-[#846644] focus:outline-none focus:ring-2 focus:ring-[#846644]"
+                  className="flex items-center text-[#2d332f] hover:text-white text-sm font-semibold transition-all duration-200 bg-[#00a85a]/10 hover:bg-[#00a85a] px-4 py-1.5 rounded-lg border border-[#00a85a]/14 hover:border-[#00a85a] focus:outline-none focus:ring-2 focus:ring-[#00a85a]"
                 >
                   <FaGithub className="w-4 h-4" />
                 </a>
