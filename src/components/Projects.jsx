@@ -63,7 +63,7 @@ const Projects = () => {
         </h2>
         
         <p className="text-lg text-[#2d332f] max-w-2xl">
-          A selection of my latest work showcasing web development, problem-solving, and creative thinking.
+          A selection of my latest work.
         </p>
       </div>
 

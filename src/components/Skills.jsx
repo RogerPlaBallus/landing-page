@@ -61,7 +61,7 @@ const Skills = () => {
         </h2>
         
         <p className="text-lg text-[#2d332f]">
-          Technologies and tools I use to build modern, scalable, and maintainable solutions.
+          Technologies and tools I use.
         </p>
       </div>
 
