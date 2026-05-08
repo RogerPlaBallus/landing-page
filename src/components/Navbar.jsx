@@ -61,13 +61,6 @@ const Navbar = () => {
     }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          
-          {/* Logo */}
-          <div className="shrink-0">
-            <a href="#" className="text-lg font-bold tracking-tight text-[#090d0a] hover:text-[#00a85a] transition-colors">
-              My <span className="text-[#00a85a]">Portfolio</span>
-            </a>
-          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
