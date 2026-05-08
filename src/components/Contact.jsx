@@ -94,7 +94,7 @@ const Contact = () => {
         </a>
 
         <a
-          href="https://www.linkedin.com/in/rogerplaballus/"
+          href="https://www.linkedin.com/in/rogerplaball%C3%BAs/"
           target="_blank"
           rel="noreferrer"
           className="group relative flex h-full flex-col items-start rounded-xl border border-[#00a85a]/12 bg-[#ffffff] p-6 transition-all duration-200 hover:border-[#00a85a]/24 hover:bg-[#f3fbf5] hover:shadow-sm"
@@ -133,7 +133,7 @@ const Contact = () => {
             {emailVisible ? EMAIL : 'Reveal Email Address'}
           </p>
           <p className="mt-2 text-xs leading-snug text-[#2d332f]">
-            {emailVisible ? 'Click copy to clipboard' : 'Click anywhere to reveal the email'}
+            {emailVisible ? 'Click copy to clipboard' : 'Click here to reveal the email'}
           </p>
 
           <div className="mt-4 w-full border-t border-[#00a85a]/12 pt-4 transition-colors group-hover:border-[#00a85a]/24">
