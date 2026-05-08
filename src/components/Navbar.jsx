@@ -28,16 +28,42 @@ const Navbar = () => {
       document.querySelector(link.href)
     ).filter(Boolean);
 
+    // Track which sections are currently intersecting
+    const visibleSections = new Set();
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            visibleSections.add(entry.target);
+          } else {
+            visibleSections.delete(entry.target);
           }
+        }
+
+        if (visibleSections.size === 0) return;
+
+        // Among all currently visible sections, pick the one
+        // whose top edge is closest to (but not above) the viewport top.
+        // This ensures the active link always matches what the user is reading.
+        let best = null;
+        let bestTop = Infinity;
+
+        for (const section of visibleSections) {
+          const top = Math.abs(section.getBoundingClientRect().top);
+          if (top < bestTop) {
+            bestTop = top;
+            best = section;
+          }
+        }
+
+        if (best) {
+          setActiveSection(best.id);
         }
       },
       {
-        rootMargin: '-20% 0px -40% 0px',
+        // Trigger when any part of a section enters the middle 40% of the viewport
+        rootMargin: '-10% 0px -50% 0px',
       }
     );
 

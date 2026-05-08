@@ -47,7 +47,7 @@ const Contact = () => {
           cycleOffset={44}
           className="flex items-center justify-center gap-2 mb-4"
         >
-          Let's Connect
+          Connect with me
         </CatKicker>
 
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#090d0a] tracking-[-0.03em] mb-4">
@@ -55,7 +55,7 @@ const Contact = () => {
         </h2>
 
         <p className="text-lg text-[#2d332f] leading-relaxed">
-          I'm always interested in hearing about new projects and opportunities. Let's talk.
+          I'm always interested in hearing about new projects and opportunities.
         </p>
       </div>
 
@@ -173,12 +173,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="border-t border-[#00a85a]/12 pt-8 text-center">
-        <p className="mx-auto max-w-md text-sm text-[#2d332f]">
-          I respond within 24 hours. Looking forward to connecting!
-        </p>
       </div>
     </section>
   );
