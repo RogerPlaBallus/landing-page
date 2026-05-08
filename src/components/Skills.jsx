@@ -10,6 +10,8 @@ import {
   Wrench,
   Bot
 } from 'lucide-react'; // These are our beautifully crisp icons!
+import CatKicker from './CatKicker';
+import gingerCat from '../assets/PixelCats/cat 2 (64х64).png';
 
 const Skills = () => {
   // We organize your skills into arrays so the code is clean and easy to edit later
@@ -51,10 +53,14 @@ const Skills = () => {
       
       {/* Section Header - Left Aligned with Accent Line */}
       <div className="mb-16 max-w-2xl">
-        <div className="flex items-baseline gap-3 mb-4">
-          <span className="text-xs font-bold text-[#00a85a] uppercase tracking-widest">Technical Expertise</span>
-          <div className="h-1 w-10 bg-linear-to-r from-[#00a85a] to-[#006f3b]"></div>
-        </div>
+        <CatKicker
+          sprite={gingerCat}
+          catLabel="Ginger pixel cat"
+          className="flex items-end gap-3 mb-4"
+          lineClassName="mb-1 h-1 w-10 bg-linear-to-r from-[#00a85a] to-[#006f3b]"
+        >
+          Technical Expertise
+        </CatKicker>
         
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#090d0a] tracking-[-0.03em] mb-4">
           My <span className="text-transparent bg-clip-text bg-linear-to-r from-[#00a85a] to-[#006f3b]">Toolkit</span>

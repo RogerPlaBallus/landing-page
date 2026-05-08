@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="relative z-10 w-full py-8 mt-12 border-t border-[#00a85a]/12 bg-[#fbfdf9]">
       <div className="max-w-6xl mx-auto px-4 flex flex-col items-center space-y-4">
         <p className="text-[#2d332f] text-sm tracking-wide">
-          Made with React & Tailwind © {new Date().getFullYear()}
+          Made with React & Tailwind &copy; {new Date().getFullYear()}
         </p>
 
         <div className="flex space-x-5">
@@ -29,10 +29,6 @@ const Footer = () => {
             <FaLinkedin size={24} />
           </a>
         </div>
-
-        <p className="text-[#68716a] text-sm italic">
-          Building real solutions for real problems.
-        </p>
       </div>
     </footer>
   );

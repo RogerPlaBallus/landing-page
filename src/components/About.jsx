@@ -101,14 +101,9 @@ const About = () => {
 
         {/* Right Side: Premium Profile Image */}
         <div className="relative flex justify-center items-center mt-12 md:mt-0">
-          
-          {/* Halo effect (background glow) */}
-          <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#00a85a]/14 to-[#006f3b]/8 blur-3xl scale-105"></div>
-          
+
           {/* Inner shadow ring for depth */}
-          <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full p-1.5 bg-[#00a85a] shadow-xl" style={{
-            boxShadow: '0 0 32px rgba(0, 168, 90, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28)',
-          }}>
+          <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full p-1.5 bg-[#00a85a] shadow-xl">
             {/* Image container */}
             <div className="w-full h-full rounded-full overflow-hidden bg-[#fbfdf9] shadow-inner">
               <img 

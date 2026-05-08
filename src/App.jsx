@@ -10,20 +10,9 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="relative min-h-screen">
-      {/* ===== BACKGROUND LAYER 1: Gradient Base ===== */}
+      {/* ===== BACKGROUND LAYER: Solid Base ===== */}
       <div className="fixed inset-0 z-0" style={{
-        background: 'linear-gradient(135deg, #fbfdf9 0%, #ffffff 52%, #f3fbf5 100%)',
-      }}></div>
-
-      {/* ===== BACKGROUND LAYER 2: Paper/Grain Texture ===== */}
-      <div className="fixed inset-0 z-0 opacity-[0.025] pointer-events-none" style={{
-        backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="5"/></filter><rect width="200" height="200" fill="black" filter="url(%23grain)"/></svg>')`,
-        backgroundSize: '200px 200px',
-      }}></div>
-
-      {/* ===== BACKGROUND LAYER 3: Subtle Radial Accent ===== */}
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(circle at 75% 25%, rgba(0, 168, 90, 0.045) 0%, transparent 56%)',
+        backgroundColor: '#fbfdf9',
       }}></div>
 
       {/* ===== CONTENT WRAPPER (relative positioning for proper layering) ===== */}

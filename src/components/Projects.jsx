@@ -1,6 +1,8 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from "react-icons/fa";
+import CatKicker from './CatKicker';
+import blackCat from '../assets/PixelCats/cat 1 (64х64).png';
 
 const Projects = () => {
   const projectsList = [
@@ -53,10 +55,15 @@ const Projects = () => {
       
       {/* Section Header - Editorial Style */}
       <div className="mb-16">
-        <div className="flex items-baseline gap-4 mb-4">
-          <span className="text-xs font-bold text-[#00a85a] uppercase tracking-widest">Featured Work</span>
-          <div className="flex-1 h-px bg-linear-to-r from-[#00a85a]/24 to-transparent"></div>
-        </div>
+        <CatKicker
+          sprite={blackCat}
+          catLabel="Black pixel cat"
+          cycleOffset={22}
+          className="flex items-end gap-4 mb-4"
+          lineClassName="mb-1 flex-1 h-px bg-linear-to-r from-[#00a85a]/24 to-transparent"
+        >
+          Featured Projects
+        </CatKicker>
         
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#090d0a] tracking-[-0.03em] mb-4">
           Recent <span className="text-transparent bg-clip-text bg-linear-to-r from-[#00a85a] to-[#006f3b]">Projects</span>

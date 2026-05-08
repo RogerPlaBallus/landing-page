@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Mail, Copy, Check } from 'lucide-react';
+import CatKicker from './CatKicker';
+import whiteCat from '../assets/PixelCats/cat 3 (64х64).png';
 
 const EMAIL = 'rogerplaballus@gmail.com';
 
@@ -39,9 +41,14 @@ const Contact = () => {
   return (
     <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto scroll-mt-[5vh]">
       <div className="text-center mb-16 max-w-2xl mx-auto">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="text-xs font-bold text-[#00a85a] uppercase tracking-widest">Let's Connect</span>
-        </div>
+        <CatKicker
+          sprite={whiteCat}
+          catLabel="White pixel cat"
+          cycleOffset={44}
+          className="flex items-center justify-center gap-2 mb-4"
+        >
+          Let's Connect
+        </CatKicker>
 
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#090d0a] tracking-[-0.03em] mb-4">
           Let's work <span className="text-transparent bg-clip-text bg-linear-to-r from-[#00a85a] to-[#006f3b]">Together</span>

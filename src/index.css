@@ -110,23 +110,54 @@ p {
   color: var(--color-text-primary);
 }
 
-/* ---- Subtle Paper/Grain Texture (Global) ---- */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.pixel-cat {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 5.25rem;
+  height: 4.75rem;
   pointer-events: none;
-  z-index: 0;
-  background-image: 
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="500" height="500" fill="%23fbfdf9" filter="url(%23noise)"/></svg>');
-  background-size: 100px 100px;
-  opacity: 0.02;
+  user-select: none;
 }
 
-/* Ensure content is above texture */
-div:not(body)::before {
-  position: relative;
+.pixel-cat__sprite {
+  width: 64px;
+  height: 64px;
+  background-image: var(--cat-sprite);
+  background-repeat: no-repeat;
+  background-position: 0 var(--cat-y);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transform: scale(1.22);
+  transform-origin: center bottom;
+  animation: pixel-cat-walk var(--cat-duration) var(--cat-steps) infinite;
+  filter: drop-shadow(0 4px 3px rgba(9, 13, 10, 0.18));
+  will-change: background-position;
+}
+
+@keyframes pixel-cat-walk {
+  from {
+    background-position: 0 var(--cat-y);
+  }
+
+  to {
+    background-position: var(--cat-x-end) var(--cat-y);
+  }
+}
+
+@media (max-width: 640px) {
+  .pixel-cat {
+    width: 4.75rem;
+    height: 4.35rem;
+  }
+
+  .pixel-cat__sprite {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-cat__sprite {
+    animation: none;
+  }
 }
