@@ -6,17 +6,24 @@ import blackCat from '../assets/PixelCats/cat 1 (64х64).png';
 
 const Projects = () => {
   const projectsList = [
+    {
+      title: "Birthday to Hubble image NASA",
+      description: "Select your birthday and see the Hubble image of that day.",
+      tech: ["TypeScript", "React", "Tailwind CSS"],
+      liveLink: "https://rogerplaballus.github.io/Birthday-to-Hubble-image-NASA/",
+      githubLink: "https://github.com/RogerPlaBallus/Birthday-to-Hubble-image-NASA"
+    },
      {
       title: "Clients & Sales",
-      description: "A simple CRM system for managing customer data and sales transactions.",
-      tech: ["Node.js", "Express", "SQLite"],
+      description: "Crud app to manage clients and sales.",
+      tech: ["JavaScript", "Express", "SQLite"],
       liveLink: "https://clients-sales.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/CLIENTS-VENDES"
     },
     {
       title: "Weather App",
       description: "A real-time weather application fetching current conditions and forecasts for any city.",
-      tech: ["HTML", "CSS", "JavaScript"],
+      tech: ["HTML", "CSS3", "JavaScript"],
       liveLink: "https://rogerplaballus.github.io/weather-app/",
       githubLink: "https://github.com/RogerPlaBallus/weather-app"
     },
@@ -29,25 +36,18 @@ const Projects = () => {
     },
     {
       title: "Exercise Tracker",
-      description: "Log, manage and retrieve daily physical activities.",
-      tech: ["Node.js", "Express", "SQLite"],
+      description: "Crud app to log physical activity with graphs.",
+      tech: ["JavaScript", "Express", "SQLite"],
       liveLink: "https://exercise-tracker-kappa-mocha.vercel.app/",
       githubLink: "https://github.com/RogerPlaBallus/Exercise-Tracker"
     },
     {
       title: "Morse Code Translator",
-      description: "Translate English text inputs into accurate Morse code with audio output.",
-      tech: ["Node.js", "React", "TypeScript", "Tailwind CSS"],
+      description: "Translate text inputs into Morse code with audio output.",
+      tech: ["React", "TypeScript", "Tailwind CSS"],
       liveLink: "https://rogerplaballus.github.io/Morse_Code_Translator_TS-React-Tailwind/",
       githubLink: "https://github.com/RogerPlaBallus/Morse_Code_Translator_TS-React-Tailwind"
     },
-    {
-      title: "Password Generator",
-      description: "A secure tool for generating random passwords in one click.",
-      tech: ["JavaScript", "DOM Manipulation", "CSS"],
-      liveLink: "https://rogerplaballus.github.io/Password-Generator-JS/",
-      githubLink: "https://github.com/RogerPlaBallus/Password-Generator-JS"
-    }
   ];
 
   return (
