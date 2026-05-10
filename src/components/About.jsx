@@ -49,7 +49,7 @@ const About = () => {
             </h1>
             
             <h2 className="text-xl md:text-2xl font-medium text-[#2d332f] mt-4">
-              Full-Stack Developer & Problem Solver
+              Junior developer
             </h2>
             
             <p className="text-base md:text-lg text-[#2d332f] max-w-xl leading-relaxed mt-4">
