@@ -40,8 +40,6 @@ const Skills = () => {
       title: "Tools",
       icon: <Wrench className="w-6 h-6 text-[#078f4f]" />,
       skills: [
-        { name: "VSCode", logo: <Settings className="w-5 h-5 text-[#00a85a]" /> },
-        { name: "Antigravity", logo: <Bot className="w-5 h-5 text-[#006f3b]" /> },
         { name: "Git & GitHub", logo: <Terminal className="w-5 h-5 text-[#090d0a]" /> },
         { name: "LLMs & Agents", logo: <Bot className="w-5 h-5 text-[#078f4f]" /> }
       ]
@@ -49,7 +47,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#00a85a]/12 scroll-mt-[5vh]"> 
+    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#00a85a]/12 scroll-mt-[80px]"> 
       
       {/* Section Header - Left Aligned with Accent Line */}
       <div className="mb-16 max-w-2xl">

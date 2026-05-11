@@ -39,7 +39,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto scroll-mt-[5vh]">
+    <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto scroll-mt-[80px]">
       <div className="text-center mb-16 max-w-2xl mx-auto">
         <CatKicker
           sprite={whiteCat}
@@ -58,17 +58,6 @@ const Contact = () => {
           I'm always interested in hearing about new projects and opportunities.
         </p>
       </div>
-
-      <div className="flex justify-center mb-12">
-        <div className="flex items-center gap-2.5 bg-[#f3fbf5] border border-[#00a85a]/45 text-[#006f3b] px-6 py-3 rounded-full text-sm font-semibold shadow-sm hover:shadow-sm transition-shadow duration-200">
-          <span className="relative flex h-2.5 w-2.5 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00a85a] opacity-60"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00a85a]"></span>
-          </span>
-          <span>Available for opportunities</span>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <a
           href="https://github.com/RogerPlaBallus"

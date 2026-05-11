@@ -24,10 +24,10 @@ function App() {
         <main className="pt-16">
           {/* Section: About Me */}
           <About />
-          {/* Section: Skills */}
-          <Skills />
           {/* Section: Projects */}
           <Projects />
+          {/* Section: Skills */}
+          <Skills />
           {/* Section: Contact */}
           <Contact />
         </main>

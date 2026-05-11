@@ -36,7 +36,7 @@ const About = () => {
 
   return (
     <>
-    <section id="about" className="min-h-screen flex items-center py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative scroll-mt-[20vh]">
+    <section id="about" className="min-h-screen flex items-center py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative scroll-mt-[80px]">
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full z-10">
         

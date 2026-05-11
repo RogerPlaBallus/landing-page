@@ -3,8 +3,8 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'About me', href: '#about' },
-  { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -13,66 +13,42 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Track scroll for subtle navbar visual change
+  // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
+      // 1. Update scrolled state for navbar background
       setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
-  // Intersection observer for active section
-  useEffect(() => {
-    const sections = navLinks.map((link) =>
-      document.querySelector(link.href)
-    ).filter(Boolean);
+      // 2. Update active section
+      const sections = navLinks.map((link) => 
+        document.querySelector(link.href)
+      ).filter(Boolean);
 
-    // Track which sections are currently intersecting
-    const visibleSections = new Set();
+      if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            visibleSections.add(entry.target);
-          } else {
-            visibleSections.delete(entry.target);
-          }
+      // Find the current section
+      // We look for the last section whose top is near or above the navbar
+      let currentSectionId = '';
+      const offset = 100; // Threshold in pixels from top
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= offset) {
+          currentSectionId = section.id;
         }
+      });
 
-        if (visibleSections.size === 0) return;
-
-        // Among all currently visible sections, pick the one
-        // whose top edge is closest to (but not above) the viewport top.
-        // This ensures the active link always matches what the user is reading.
-        let best = null;
-        let bestTop = Infinity;
-
-        for (const section of visibleSections) {
-          const top = Math.abs(section.getBoundingClientRect().top);
-          if (top < bestTop) {
-            bestTop = top;
-            best = section;
-          }
-        }
-
-        if (best) {
-          setActiveSection(best.id);
-        }
-      },
-      {
-        // Trigger when any part of a section enters the middle 40% of the viewport
-        rootMargin: '-10% 0px -50% 0px',
+      if (currentSectionId && currentSectionId !== activeSection) {
+        setActiveSection(currentSectionId);
       }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
     };
-  }, []);
+
+    window.addEventListener('scroll', handleScroll);
+    // Run once on mount to set initial active section
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection]);
 
   // Close mobile menu when link clicked
   const handleNavClick = () => {

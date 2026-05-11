@@ -51,7 +51,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-b border-[#00a85a]/12 scroll-mt-[5vh]"> 
+    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-b border-[#00a85a]/12 scroll-mt-[80px]"> 
       
       {/* Section Header - Editorial Style */}
       <div className="mb-16">
